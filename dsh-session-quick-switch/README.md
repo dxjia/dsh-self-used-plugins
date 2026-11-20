@@ -19,6 +19,14 @@ The default is **Ctrl+Tab** on macOS and Windows Desktop. Web and Linux do not r
 
 The command is editable under **Settings → Keyboard shortcuts**. Web users can assign another allowed binding there.
 
+## Compatibility
+
+This archived version supports:
+
+```text
+dsh >=0.2.2-rc.5 <0.3.0
+```
+
 ## Build
 
 ```sh

@@ -20,6 +20,14 @@ The settings row also includes a terminal-size stepper and font-family field. Th
 
 The row is collapsed by default so it occupies a single settings entry. Its summary shows the active palette, color mode, terminal font size, and ANSI color strip; activating the row expands all appearance controls.
 
+## Compatibility
+
+This archived version supports:
+
+```text
+dsh >=0.2.2-rc.3 <0.3.0
+```
+
 ## Build
 
 From this directory:
