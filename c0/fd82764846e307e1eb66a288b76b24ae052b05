@@ -1,0 +1,47 @@
+dsh-session-quick-switch/.gitignore
+  s_c6961c7dd53ddb::t_fe2b6157f577b6 1-4
+dsh-session-quick-switch/LICENSE
+  s_c6961c7dd53ddb::t_64bc3385db3ce9 1-21
+dsh-session-quick-switch/README.md
+  s_c6961c7dd53ddb::t_f28c973eb42bce 1-41
+dsh-session-quick-switch/cordis.patch.yml
+  s_c6961c7dd53ddb::t_7a840d7da45232 1-3
+dsh-session-quick-switch/package.json
+  s_c6961c7dd53ddb::t_258a8ffdac5556 1-70
+dsh-session-quick-switch/pnpm-lock.yaml
+  s_c6961c7dd53ddb::t_4d330e1e6244cc 1-2749
+dsh-session-quick-switch/src/client/cycle.ts
+  s_c6961c7dd53ddb::t_d4849d6dfd2f0c 1-134
+dsh-session-quick-switch/src/client/index.ts
+  s_c6961c7dd53ddb::t_302a11cc01588b 1-116
+dsh-session-quick-switch/src/client/locales.ts
+  s_c6961c7dd53ddb::t_089e2b6302fff7 1-40
+dsh-session-quick-switch/src/index.ts
+  s_c6961c7dd53ddb::t_c35f004dd9ca46 1-8
+dsh-session-quick-switch/tests/apply.spec.ts
+  s_c6961c7dd53ddb::t_6e0483569bc468 1-134
+dsh-session-quick-switch/tests/cycle.spec.ts
+  s_c6961c7dd53ddb::t_a748ed092ee5fd 1-82
+dsh-session-quick-switch/tsconfig.json
+  s_c6961c7dd53ddb::t_aa218f5aaa7750 1-22
+dsh-session-quick-switch/tsdown.config.ts
+  s_c6961c7dd53ddb::t_7c9a409e9e5022 1-58
+dsh-session-quick-switch/vitest.config.ts
+  s_c6961c7dd53ddb::t_91fa512a26bfcb 1-8
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "5.30.9",
+  "base_commit_sha": "c0fd82764846e307e1eb66a288b76b24ae052b05",
+  "prompts": {},
+  "sessions": {
+    "s_c6961c7dd53ddb": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1e425-627a-7e72-8612-bf8198ed46e7",
+        "model": "deepseek-v4.1-flash"
+      },
+      "human_author": "piggyguy <jiadexiang@huawei.com>"
+    }
+  }
+}
