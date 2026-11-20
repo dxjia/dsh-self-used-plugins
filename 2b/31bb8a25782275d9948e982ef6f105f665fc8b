@@ -1,0 +1,65 @@
+dsh-im-chat-mockup/.gitignore
+  s_c6961c7dd53ddb::t_8f81901ac64536 1-4
+dsh-im-chat-mockup/LICENSE
+  s_c6961c7dd53ddb::t_274da1b4059e87 1-21
+dsh-im-chat-mockup/README.md
+  s_c6961c7dd53ddb::t_2b558a98d26641 1-56
+dsh-im-chat-mockup/cordis.patch.yml
+  s_c6961c7dd53ddb::t_fccd47c7237558 1-3
+dsh-im-chat-mockup/package.json
+  s_c6961c7dd53ddb::t_866d666131e919 1-92
+dsh-im-chat-mockup/pnpm-lock.yaml
+  s_c6961c7dd53ddb::t_caec41d0a8e9c9 1-2882
+dsh-im-chat-mockup/src/client/ChatAppearanceRow.module.css
+  s_c6961c7dd53ddb::t_930611ad507eec 1-428
+dsh-im-chat-mockup/src/client/ChatAppearanceRow.tsx
+  s_c6961c7dd53ddb::t_1c5b34852e9af6 1-242
+dsh-im-chat-mockup/src/client/component-styles.ts
+  s_c6961c7dd53ddb::t_933b1943169a44 1-20
+dsh-im-chat-mockup/src/client/css.ts
+  s_c6961c7dd53ddb::t_3cc9a1b851026f 1-175
+dsh-im-chat-mockup/src/client/decorator.tsx
+  s_c6961c7dd53ddb::t_cd5514f6b155a5 1-189
+dsh-im-chat-mockup/src/client/image-store.ts
+  s_c6961c7dd53ddb::t_61e89a4d4afabe 1-130
+dsh-im-chat-mockup/src/client/index.ts
+  s_c6961c7dd53ddb::t_0a85988de94148 1-79
+dsh-im-chat-mockup/src/client/locales.ts
+  s_c6961c7dd53ddb::t_4b883f1ffeab0c 1-320
+dsh-im-chat-mockup/src/client/preference.ts
+  s_c6961c7dd53ddb::t_de9d4505020e73 1-116
+dsh-im-chat-mockup/src/client/runtime.ts
+  s_c6961c7dd53ddb::t_8a746081e46ed9 1-82
+dsh-im-chat-mockup/src/client/time.ts
+  s_c6961c7dd53ddb::t_358c8e0ae2dadd 1-40
+dsh-im-chat-mockup/src/css-modules.d.ts
+  s_c6961c7dd53ddb::t_b97647a3935fd2 1-9
+dsh-im-chat-mockup/src/index.ts
+  s_c6961c7dd53ddb::t_7b12afdbf2fe56 1-42
+dsh-im-chat-mockup/src/settings.ts
+  s_c6961c7dd53ddb::t_4cd88877f1637a 1-77
+dsh-im-chat-mockup/tests/appearance.spec.ts
+  s_c6961c7dd53ddb::t_3c3eb75601e5a5 1-90
+dsh-im-chat-mockup/tsconfig.json
+  s_c6961c7dd53ddb::t_9e1edeab4ae08b 1-22
+dsh-im-chat-mockup/tsdown.config.ts
+  s_c6961c7dd53ddb::t_5ed522e62b450f 1-110
+dsh-im-chat-mockup/vitest.config.ts
+  s_c6961c7dd53ddb::t_7cc926fc68b246 1-8
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "5.30.9",
+  "base_commit_sha": "2b31bb8a25782275d9948e982ef6f105f665fc8b",
+  "prompts": {},
+  "sessions": {
+    "s_c6961c7dd53ddb": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1e425-627a-7e72-8612-bf8198ed46e7",
+        "model": "deepseek-v4.1-flash"
+      },
+      "human_author": "piggyguy <jiadexiang@huawei.com>"
+    }
+  }
+}
