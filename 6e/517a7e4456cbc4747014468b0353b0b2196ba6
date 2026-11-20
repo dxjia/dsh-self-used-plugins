@@ -1,0 +1,69 @@
+dsh-terminal-appearance/src/client/component-styles.ts
+  s_c6961c7dd53ddb::t_7191fba7f3c137 1-20
+dsh-terminal-appearance/src/client/TerminalAppearanceRow.module.css
+  s_c6961c7dd53ddb::t_7191fba7f3c137 1-499
+dsh-terminal-appearance/LICENSE
+  s_c6961c7dd53ddb::t_7191fba7f3c137 1-21
+dsh-terminal-appearance/src/client/TerminalAppearanceRow.tsx
+  s_c6961c7dd53ddb::t_7191fba7f3c137 1-210
+dsh-terminal-appearance/package.json
+  s_c6961c7dd53ddb::t_7191fba7f3c137 1-84
+dsh-terminal-appearance/src/palettes.ts
+  s_c6961c7dd53ddb::t_7191fba7f3c137 1-172
+dsh-terminal-appearance/src/client/locales.ts
+  s_c6961c7dd53ddb::t_7191fba7f3c137 1-304
+dsh-terminal-appearance/src/client/runtime.ts
+  s_c6961c7dd53ddb::t_7191fba7f3c137 1-51
+dsh-terminal-appearance/.gitignore
+  s_c6961c7dd53ddb::t_7191fba7f3c137 1-4
+dsh-terminal-appearance/src/client/preference.ts
+  s_c6961c7dd53ddb::t_7191fba7f3c137 1-71
+dsh-terminal-appearance/tsconfig.json
+  s_c6961c7dd53ddb::t_7191fba7f3c137 1-22
+dsh-terminal-appearance/src/css-modules.d.ts
+  s_c6961c7dd53ddb::t_7191fba7f3c137 1-9
+dsh-terminal-appearance/cordis.patch.yml
+  s_c6961c7dd53ddb::t_7191fba7f3c137 1-3
+dsh-terminal-appearance/tests/terminal-appearance-row.spec.ts
+  s_c6961c7dd53ddb::t_7191fba7f3c137 1-56
+dsh-terminal-appearance/tsdown.config.ts
+  s_c6961c7dd53ddb::t_7191fba7f3c137 1-110
+dsh-terminal-appearance/src/client/index.ts
+  s_c6961c7dd53ddb::t_7191fba7f3c137 1-53
+dsh-terminal-appearance/src/index.ts
+  s_c6961c7dd53ddb::t_7191fba7f3c137 1-35
+dsh-terminal-appearance/tests/palettes.spec.ts
+  s_c6961c7dd53ddb::t_7191fba7f3c137 1-71
+dsh-terminal-appearance/src/appearance-css.ts
+  s_c6961c7dd53ddb::t_7191fba7f3c137 1-43
+dsh-terminal-appearance/src/settings.ts
+  s_c6961c7dd53ddb::t_7191fba7f3c137 1-42
+dsh-terminal-appearance/src/inline-ansi.ts
+  s_c6961c7dd53ddb::t_7191fba7f3c137 1-235
+dsh-terminal-appearance/vitest.config.ts
+  s_c6961c7dd53ddb::t_7191fba7f3c137 1-8
+dsh-terminal-appearance/README.md
+  s_c6961c7dd53ddb::t_7191fba7f3c137 1-64
+dsh-terminal-appearance/pnpm-lock.yaml
+  s_c6961c7dd53ddb::t_54d48991783aa1 1-1985
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "5.30.9",
+  "base_commit_sha": "6e517a7e4456cbc4747014468b0353b0b2196ba6",
+  "prompts": {},
+  "sessions": {
+    "s_c6961c7dd53ddb": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1e425-627a-7e72-8612-bf8198ed46e7",
+        "model": "deepseek-v4.1-flash"
+      },
+      "human_author": "piggyguy <jiadexiang@huawei.com>",
+      "custom_attributes": {
+        "stats_models": {"deepseek-v4.1-flash":{"additions":2187}},
+        "stats_total_additions": 2187
+      }
+    }
+  }
+}
