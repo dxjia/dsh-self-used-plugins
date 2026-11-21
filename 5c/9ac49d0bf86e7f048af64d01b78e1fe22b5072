@@ -1,0 +1,27 @@
+dsh-bottom-glass/src/client/runtime.ts
+  s_e92b0e559778f8::t_c274db96686c4c 55-56,60-61
+  s_e92b0e559778f8::t_122ad8adc27ac6 247-250,252-254,296,299-303,356,359-363
+  s_e92b0e559778f8::t_3d25c71a3a8822 251,255-256,295,297-298,355,357-358
+  s_e92b0e559778f8::t_13de1a34492d2b 304
+  s_e92b0e559778f8::t_5cabf7c0732b3d 364
+dsh-bottom-glass/tests/appearance.spec.ts
+  s_e92b0e559778f8::t_122ad8adc27ac6 93-97
+  s_e92b0e559778f8::t_3d25c71a3a8822 86-92,98-99
+  s_e92b0e559778f8::t_c274db96686c4c 116
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "5.30.10",
+  "base_commit_sha": "5c9ac49d0bf86e7f048af64d01b78e1fe22b5072",
+  "prompts": {},
+  "sessions": {
+    "s_e92b0e559778f8": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1fe20-d90d-7413-8451-67bb5b0a57c8",
+        "model": "deepseek-v4.1-flash"
+      },
+      "human_author": "piggyguy <jiadexiang@huawei.com>"
+    }
+  }
+}
