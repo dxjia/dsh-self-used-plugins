@@ -10,6 +10,7 @@ The plugin changes paint only. It does not alter the slot height, bottom-panel r
 - Defaults aligned with DSH's native sidebar material so the result reads as glass rather than a near-opaque recolored panel.
 - Matching glass treatment for both sidebars, the conversation surface, and the sticky chat composer.
 - Transparent content roots for right-side terminal and file-browser tabs, including the xterm viewport.
+- One composer background layer, with matching blur on both the input card and the statistics dock below it.
 - Transparent base surfaces for the same-origin Inspector document, so its DevTools content does not cover the glass with an opaque page.
 - Live light/dark adaptation through DSH theme tokens.
 - System Reduce Transparency support.

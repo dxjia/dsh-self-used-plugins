@@ -128,7 +128,7 @@ body[data-dsh-bottom-glass] [data-sidebar-right-panel] [data-files-search-settin
   backdrop-filter: blur(${settings.blur}px) saturate(${settings.saturation}%);
 }
 
-body[data-dsh-bottom-glass] [data-composer-seat] {
+body[data-dsh-bottom-glass] [data-conversation-content] [data-composer-seat] {
   background:
     linear-gradient(
       180deg,
@@ -139,16 +139,13 @@ body[data-dsh-bottom-glass] [data-composer-seat] {
         transparent
       ) 36px
     );
-  -webkit-backdrop-filter: blur(${settings.blur}px) saturate(${settings.saturation}%);
-  backdrop-filter: blur(${settings.blur}px) saturate(${settings.saturation}%);
 }
 
-body[data-dsh-bottom-glass] [data-composer-card] {
-  background-color: color-mix(
-    in srgb,
-    var(--dsw-specific-input-major) ${settings.opacity}%,
-    transparent
-  );
+body[data-dsh-bottom-glass] [data-composer-card],
+body[data-dsh-bottom-glass] [data-composer-dock] {
+  background-color: transparent;
+  -webkit-backdrop-filter: blur(${settings.blur}px) saturate(${settings.saturation}%);
+  backdrop-filter: blur(${settings.blur}px) saturate(${settings.saturation}%);
 }
 
 body[data-dsh-bottom-glass] [data-shell-bottom] :where([data-inspector-panel]) {
@@ -163,12 +160,8 @@ body[data-dsh-bottom-glass] [data-shell-bottom] :where([data-inspector-panel]) {
     background-color: var(--dsw-alias-bg-base);
   }
 
-  body[data-dsh-bottom-glass] [data-composer-seat] {
+  body[data-dsh-bottom-glass] [data-conversation-content] [data-composer-seat] {
     background: var(--dsw-alias-bg-base);
-  }
-
-  body[data-dsh-bottom-glass] [data-composer-card] {
-    background-color: var(--dsw-specific-input-major);
   }
 
   body[data-dsh-bottom-glass] [data-sidebar-right-panel] [data-sidebar-terminal],
@@ -182,7 +175,8 @@ body[data-dsh-bottom-glass] [data-shell-bottom] :where([data-inspector-panel]) {
   body[data-dsh-bottom-glass] div:has(> [data-slot="sidebar"]),
   body[data-dsh-bottom-glass] div:has(> [data-conversation-content]),
   body[data-dsh-bottom-glass] div:has(> [data-slot="rightbar"]),
-  body[data-dsh-bottom-glass] [data-composer-seat] {
+  body[data-dsh-bottom-glass] [data-composer-card],
+  body[data-dsh-bottom-glass] [data-composer-dock] {
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
   }
@@ -193,12 +187,8 @@ body[data-dsh-bottom-glass] [data-shell-bottom] :where([data-inspector-panel]) {
   body[data-dsh-bottom-glass] div:has(> [data-slot="sidebar"]),
   body[data-dsh-bottom-glass] div:has(> [data-conversation-content]),
   body[data-dsh-bottom-glass] div:has(> [data-slot="rightbar"]),
-  body[data-dsh-bottom-glass] [data-composer-seat] {
-    background-color: Canvas;
-  }
-
-  body[data-dsh-bottom-glass] [data-composer-card] {
-    background-color: Canvas;
+  body[data-dsh-bottom-glass] [data-conversation-content] [data-composer-seat] {
+    background: Canvas;
   }
 
   body[data-dsh-bottom-glass] [data-sidebar-right-panel] [data-sidebar-terminal],
@@ -212,7 +202,8 @@ body[data-dsh-bottom-glass] [data-shell-bottom] :where([data-inspector-panel]) {
   body[data-dsh-bottom-glass] div:has(> [data-slot="sidebar"]),
   body[data-dsh-bottom-glass] div:has(> [data-conversation-content]),
   body[data-dsh-bottom-glass] div:has(> [data-slot="rightbar"]),
-  body[data-dsh-bottom-glass] [data-composer-seat] {
+  body[data-dsh-bottom-glass] [data-composer-card],
+  body[data-dsh-bottom-glass] [data-composer-dock] {
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
   }
