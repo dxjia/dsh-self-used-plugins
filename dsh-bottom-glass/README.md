@@ -7,10 +7,12 @@ The plugin changes paint only. It does not alter the slot height, bottom-panel r
 ## Features
 
 - A General settings row for enabling the effect, background strength, blur, and saturation.
+- An optional Liquid Glass-inspired mode for the composer input and its buttons, with specular highlights, luminous edges, and a subtle contrast lift.
 - Defaults aligned with DSH's native sidebar material so the result reads as glass rather than a near-opaque recolored panel.
 - Matching glass treatment for both sidebars, the conversation surface, and the sticky chat composer.
 - Transparent content roots for right-side terminal and file-browser tabs, including the xterm viewport.
-- One composer background layer, with matching blur on both the input card and the statistics dock below it.
+- Matching glass on the composer input, goal, queue, todo, and statistics panels, with the statistics panel aligned to the goal strip width.
+- Compact goal and statistics panels include a theme-aware surface tint, hairline edge, inner highlight, and soft shadow so they remain legible over visually empty backdrops.
 - Transparent base surfaces for the same-origin Inspector document, so its DevTools content does not cover the glass with an opaque page.
 - Live light/dark adaptation through DSH theme tokens.
 - System Reduce Transparency support.
@@ -48,6 +50,7 @@ Open `Settings → General → Bottom glass`.
 - **Background strength** controls how much of the theme surface remains over the blur.
 - **Blur** controls the backdrop blur radius.
 - **Saturation** controls the color richness visible through the glass.
+- **Liquid glass** adds optional specular highlights, luminous edges, and a subtle contrast lift.
 - The switch controls the effect without disabling the whole plugin.
 
 ## Compatibility

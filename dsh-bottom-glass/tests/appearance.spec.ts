@@ -5,6 +5,7 @@ describe('bottom-glass stylesheet', () => {
   it('paints the full-width slot with configurable blur and saturation', () => {
     const css = renderBottomGlassCss({
       enabled: true,
+      liquidGlass: false,
       opacity: 72,
       blur: 28,
       saturation: 144,
@@ -17,7 +18,9 @@ describe('bottom-glass stylesheet', () => {
   })
 
   it('includes the sidebar and bottom chat surfaces without painting unrelated terminal content', () => {
-    const css = renderBottomGlassCss({ enabled: true, opacity: 80, blur: 18, saturation: 130 })
+    const css = renderBottomGlassCss({
+      enabled: true, liquidGlass: false, opacity: 80, blur: 18, saturation: 130,
+    })
     expect(css).toContain('[data-composer-seat]')
     expect(css).toContain('[data-composer-card]')
     expect(css).toContain('[data-composer-dock]')
@@ -33,24 +36,76 @@ describe('bottom-glass stylesheet', () => {
     expect(css).not.toContain('body {')
   })
 
-  it('uses one composer glass layer that reaches below the input card', () => {
-    const css = renderBottomGlassCss({ enabled: true, opacity: 48, blur: 24, saturation: 140 })
+  it('paints each composer card at the shared width without leaking through the seat', () => {
+    const css = renderBottomGlassCss({
+      enabled: true, liquidGlass: false, opacity: 48, blur: 24, saturation: 140,
+    })
     const seatRule = css.match(
       /\[data-conversation-content\] \[data-composer-seat\] \{([\s\S]*?)\n\}/,
     )?.[1]
-    expect(seatRule).toContain('var(--dsw-alias-bg-base) 48%')
-    expect(seatRule).not.toContain('backdrop-filter')
+    expect(seatRule).toContain('background: none')
 
-    const surfaceRule = css.match(
-      /\[data-composer-card\],\nbody\[data-dsh-bottom-glass\] \[data-composer-dock\] \{([\s\S]*?)\n\}/,
-    )?.[1]
-    expect(surfaceRule).toContain('background-color: transparent')
-    expect(surfaceRule).toContain('backdrop-filter: blur(24px) saturate(140%)')
+    const cardRule = css.match(/\[data-composer-card\] \{([\s\S]*?)\n\}/)?.[1]
+    expect(cardRule).toContain('var(--dsw-specific-input-major) 48%')
+    expect(cardRule).toContain('backdrop-filter: blur(24px) saturate(140%)')
+
+    const dockRule = css.match(/\[data-composer-dock\] \{([\s\S]*?)\n\}/)?.[1]
+    expect(dockRule).toContain('width: calc(100% - 4 * var(--dsh-composer-dock-inset))')
+    expect(dockRule).toContain('var(--dsh-composer-card-max-width) -')
+    expect(dockRule).toContain('4 * var(--dsh-composer-dock-inset)')
+    expect(dockRule).toContain('margin: var(--dsh-composer-stack-gap) auto 0')
+    expect(dockRule).toContain('border-radius: var(--dsw-radius-md)')
+    expect(dockRule).toContain('var(--dsw-alias-label-primary) 4%')
+    expect(dockRule).toContain('calc(48% + 10%)')
+    expect(dockRule).toContain('inset 0 1px 0')
+    expect(dockRule).toContain('0 4px 12px')
+    expect(dockRule).toContain('backdrop-filter: blur(24px) saturate(140%)')
+  })
+
+  it('gives goal, queue, and todo panels the same glass treatment', () => {
+    const css = renderBottomGlassCss({
+      enabled: true, liquidGlass: false, opacity: 48, blur: 24, saturation: 140,
+    })
+    expect(css).toContain("[data-goal-bar] > div::before")
+    expect(css).toContain("[data-queue-dock] > div::before")
+    expect(css).toContain("[data-testid='todo-panel']")
+
+    const goalRule = css.match(/\[data-goal-bar\] > div::before \{([\s\S]*?)\n\}/)?.[1]
+    expect(goalRule).toContain('var(--dsw-alias-label-primary) 4%')
+    expect(goalRule).toContain('calc(48% + 10%)')
+    expect(goalRule).toContain('0 4px 12px')
 
     const reducedTransparency = css.slice(css.indexOf('@media (prefers-reduced-transparency: reduce)'))
-    expect(reducedTransparency).toContain('[data-composer-card]')
+    expect(reducedTransparency).toContain('[data-goal-bar] > div::before')
+    expect(reducedTransparency).toContain('[data-queue-dock] > div::before')
+    expect(reducedTransparency).toContain("[data-testid='todo-panel']")
     expect(reducedTransparency).toContain('[data-composer-dock]')
     expect(reducedTransparency).toContain('backdrop-filter: none')
+  })
+
+  it('adds optional Liquid Glass-inspired highlights without changing reduced-transparency fallbacks', () => {
+    const standard = renderBottomGlassCss({
+      enabled: true, liquidGlass: false, opacity: 48, blur: 24, saturation: 140,
+    })
+    expect(standard).not.toContain('contrast(1.04)')
+
+    const liquid = renderBottomGlassCss({
+      enabled: true, liquidGlass: true, opacity: 48, blur: 24, saturation: 140,
+    })
+    const liquidEnhancement = liquid.match(
+      /@media \(prefers-reduced-transparency: no-preference\)[\s\S]*?\n\}\n/,
+    )?.[0]
+    expect(liquidEnhancement).toContain('[data-composer-card] button:not(')
+    expect(liquidEnhancement).toContain("[data-composer-card] [role='button']:not(")
+    expect(liquidEnhancement).toContain("[data-slot='conversation.input.permission'] *")
+    expect(liquidEnhancement).toContain("[data-slot='conversation.input.model'] *")
+    expect(liquidEnhancement).not.toContain('[data-goal-bar]')
+    expect(liquidEnhancement).not.toContain('[data-queue-dock]')
+    expect(liquidEnhancement).not.toContain('[data-composer-dock]')
+    expect(liquidEnhancement).not.toContain("[data-testid='todo-panel']")
+    expect(liquidEnhancement).toContain('linear-gradient(')
+    expect(liquidEnhancement).toContain('inset 0 1px 0 rgb(255 255 255 / 0.42)')
+    expect(liquidEnhancement).toContain('contrast(1.04) brightness(1.02)')
   })
 
   it('makes the same-origin Inspector document participate in the outer glass', () => {

@@ -33,6 +33,7 @@ export function apply(ctx: Context): void {
   const face = (): BottomGlassRowInjected => ({
     hooks: { appearance: form, mutation: preference.state },
     setEnabled: enabled => preference.setEnabled(enabled),
+    setLiquidGlass: liquidGlass => preference.setLiquidGlass(liquidGlass),
     setOpacity: opacity => preference.setOpacity(opacity),
     setBlur: blur => preference.setBlur(blur),
     setSaturation: saturation => preference.setSaturation(saturation),

@@ -33,6 +33,15 @@ export class BottomGlassPreference {
   }
 
   /**
+   * Save whether the Liquid Glass-inspired highlights are enabled.
+   * @param liquidGlass - requested highlight state.
+   * @returns settlement after the Host answers.
+   */
+  setLiquidGlass(liquidGlass: boolean): Promise<void> {
+    return this.write(() => this.form.set('liquidGlass', liquidGlass))
+  }
+
+  /**
    * Save background opacity.
    * @param opacity - opacity percentage.
    * @returns settlement after the Host answers.
@@ -66,6 +75,7 @@ export class BottomGlassPreference {
   reset(): Promise<void> {
     return this.write(() => this.form.mutate([
       { op: 'unset', path: ['enabled'] },
+      { op: 'unset', path: ['liquidGlass'] },
       { op: 'unset', path: ['opacity'] },
       { op: 'unset', path: ['blur'] },
       { op: 'unset', path: ['saturation'] },

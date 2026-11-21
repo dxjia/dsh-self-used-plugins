@@ -14,6 +14,8 @@ export const BOTTOM_GLASS_LIMITS = Object.freeze({
 export interface BottomGlassSettings {
   /** Whether the plugin paints the full-width bottom slot. */
   enabled: boolean
+  /** Whether to add the Liquid Glass-inspired highlight treatment. */
+  liquidGlass: boolean
   /** Background paint opacity in percent. */
   opacity: number
   /** Backdrop blur radius in pixels. */
@@ -25,6 +27,7 @@ export interface BottomGlassSettings {
 /** Values used before the Host settings document is available. */
 export const DEFAULT_BOTTOM_GLASS: BottomGlassSettings = Object.freeze({
   enabled: true,
+  liquidGlass: false,
   opacity: BOTTOM_GLASS_LIMITS.opacity.default,
   blur: BOTTOM_GLASS_LIMITS.blur.default,
   saturation: BOTTOM_GLASS_LIMITS.saturation.default,
@@ -45,6 +48,9 @@ export function normalizeBottomGlassSettings(value: unknown): BottomGlassSetting
   const candidate = value as Partial<BottomGlassSettings>
   return {
     enabled: typeof candidate.enabled === 'boolean' ? candidate.enabled : DEFAULT_BOTTOM_GLASS.enabled,
+    liquidGlass: typeof candidate.liquidGlass === 'boolean'
+      ? candidate.liquidGlass
+      : DEFAULT_BOTTOM_GLASS.liquidGlass,
     opacity: boundedInteger(
       candidate.opacity,
       DEFAULT_BOTTOM_GLASS.opacity,

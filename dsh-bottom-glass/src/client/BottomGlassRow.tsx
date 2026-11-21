@@ -1,5 +1,5 @@
 /** Frosted-glass controls for the full-width bottom Slot in General settings. */
-import { useId, useState, type CSSProperties } from 'react'
+import { useEffect, useId, useRef, useState, type CSSProperties } from 'react'
 import {
   Button,
   IconChevronDownOutlineRegular,
@@ -24,6 +24,7 @@ export interface BottomGlassRowInjected {
     mutation: ObservableSnapshot<BottomGlassMutation>
   }
   setEnabled(enabled: boolean): Promise<void>
+  setLiquidGlass(liquidGlass: boolean): Promise<void>
   setOpacity(opacity: number): Promise<void>
   setBlur(blur: number): Promise<void>
   setSaturation(saturation: number): Promise<void>
@@ -35,6 +36,19 @@ type Props = PropsRuntime<'settings.general.item'> & PropsLocale<'bottomGlass'>
 
 type PreviewProperties = CSSProperties & Record<`--preview-${string}`, string>
 
+interface GlassRangeProps {
+  id: string
+  label: string
+  hint: string
+  formatValue(value: number): string
+  value: number
+  min: number
+  max: number
+  disabled: boolean
+  syncToken: number
+  onChange(value: number): void
+}
+
 function previewProperties(settings: BottomGlassSettings): PreviewProperties {
   return {
     '--preview-opacity': `${settings.opacity}%`,
@@ -43,13 +57,50 @@ function previewProperties(settings: BottomGlassSettings): PreviewProperties {
   }
 }
 
+function GlassRange({
+  id, label, hint, formatValue, value, min, max, disabled, syncToken, onChange,
+}: GlassRangeProps) {
+  const [draft, setDraft] = useState(value)
+  const interacting = useRef(false)
+
+  useEffect(() => {
+    if (!interacting.current) setDraft(value)
+  }, [syncToken, value])
+
+  const finishInteraction = (): void => {
+    interacting.current = false
+  }
+
+  return <label className={css.sliderRow} htmlFor={id}>
+    <span className={css.sliderHeading}>
+      <span className={css.label}>{label}</span>
+      <span className={css.value}>{formatValue(draft)}</span>
+    </span>
+    <span className={css.hint}>{hint}</span>
+    <input id={id} className={css.slider} type="range"
+      min={min} max={max} step="1" value={draft} disabled={disabled}
+      onPointerDown={() => { interacting.current = true }}
+      onPointerUp={finishInteraction}
+      onPointerCancel={finishInteraction}
+      onLostPointerCapture={finishInteraction}
+      onKeyDown={() => { interacting.current = true }}
+      onKeyUp={finishInteraction}
+      onBlur={finishInteraction}
+      onChange={(event) => {
+        const next = Number(event.currentTarget.value)
+        setDraft(next)
+        onChange(next)
+      }} />
+  </label>
+}
+
 /**
  * Render bottom-slot glass preferences.
  * @param props - settings snapshots, write actions, and localized copy.
  * @returns the collapsible General settings row.
  */
 export function BottomGlassRow({
-  useAppearance, useMutation, setEnabled, setOpacity, setBlur, setSaturation, reset, t,
+  useAppearance, useMutation, setEnabled, setLiquidGlass, setOpacity, setBlur, setSaturation, reset, t,
 }: Props) {
   const appearance = useAppearance(value => value)
   const mutation = useMutation(value => value)
@@ -79,11 +130,13 @@ export function BottomGlassRow({
   const settings = normalizeBottomGlassSettings(appearance.value)
   const disabled = !appearance.writable
   const isDefault = settings.enabled === DEFAULT_BOTTOM_GLASS.enabled
+    && settings.liquidGlass === DEFAULT_BOTTOM_GLASS.liquidGlass
     && settings.opacity === DEFAULT_BOTTOM_GLASS.opacity
     && settings.blur === DEFAULT_BOTTOM_GLASS.blur
     && settings.saturation === DEFAULT_BOTTOM_GLASS.saturation
   const summary = settings.enabled
-    ? t('summaryOn', { opacity: String(settings.opacity), blur: String(settings.blur) })
+    ? `${t('summaryOn', { opacity: String(settings.opacity), blur: String(settings.blur) })}`
+      + (settings.liquidGlass ? ` · ${t('liquidGlass')}` : '')
     : t('summaryOff')
   const notice = mutation.busy ? t('saving') : mutation.notice === 'saved' ? t('saved')
     : mutation.notice === 'failed' ? t('failed') : !appearance.writable ? t('readonly') : ''
@@ -108,7 +161,8 @@ export function BottomGlassRow({
     </button>
 
     <div className={css.expandedContent} id={bodyId} hidden={!expanded}>
-      <div className={css.previewFrame} style={previewProperties(settings)} data-enabled={settings.enabled || undefined}
+      <div className={css.previewFrame} style={previewProperties(settings)}
+        data-enabled={settings.enabled || undefined} data-liquid={settings.liquidGlass || undefined}
         aria-label={t('preview')}>
         <div className={css.previewContent} aria-hidden="true">
           <span className={css.previewOrb} />
@@ -138,42 +192,55 @@ export function BottomGlassRow({
         </button>
       </div>
 
+      <div className={css.toggleRow}>
+        <span className={css.toggleText}>
+          <span className={css.label}>{t('liquidGlass')}</span>
+          <span className={css.hint}>{t('liquidGlassHint')}</span>
+        </span>
+        <button type="button" className={css.switch} role="switch" disabled={disabled}
+          aria-checked={settings.liquidGlass} aria-label={t('liquidGlass')}
+          onClick={() => { void setLiquidGlass(!settings.liquidGlass) }}>
+          <span />
+        </button>
+      </div>
+
       <div className={css.sliderGroup}>
-        <label className={css.sliderRow} htmlFor={opacityId}>
-          <span className={css.sliderHeading}>
-            <span className={css.label}>{t('opacity')}</span>
-            <span className={css.value}>{t('percent', { value: String(settings.opacity) })}</span>
-          </span>
-          <span className={css.hint}>{t('opacityHint')}</span>
-          <input key={settings.opacity} id={opacityId} className={css.slider} type="range"
-            min={BOTTOM_GLASS_LIMITS.opacity.min} max={BOTTOM_GLASS_LIMITS.opacity.max} step="1"
-            defaultValue={settings.opacity} disabled={disabled}
-            onChange={(event) => { void setOpacity(Number(event.currentTarget.value)) }} />
-        </label>
-
-        <label className={css.sliderRow} htmlFor={blurId}>
-          <span className={css.sliderHeading}>
-            <span className={css.label}>{t('blur')}</span>
-            <span className={css.value}>{t('pixels', { value: String(settings.blur) })}</span>
-          </span>
-          <span className={css.hint}>{t('blurHint')}</span>
-          <input key={settings.blur} id={blurId} className={css.slider} type="range"
-            min={BOTTOM_GLASS_LIMITS.blur.min} max={BOTTOM_GLASS_LIMITS.blur.max} step="1"
-            defaultValue={settings.blur} disabled={disabled}
-            onChange={(event) => { void setBlur(Number(event.currentTarget.value)) }} />
-        </label>
-
-        <label className={css.sliderRow} htmlFor={saturationId}>
-          <span className={css.sliderHeading}>
-            <span className={css.label}>{t('saturation')}</span>
-            <span className={css.value}>{t('percent', { value: String(settings.saturation) })}</span>
-          </span>
-          <span className={css.hint}>{t('saturationHint')}</span>
-          <input key={settings.saturation} id={saturationId} className={css.slider} type="range"
-            min={BOTTOM_GLASS_LIMITS.saturation.min} max={BOTTOM_GLASS_LIMITS.saturation.max} step="1"
-            defaultValue={settings.saturation} disabled={disabled}
-            onChange={(event) => { void setSaturation(Number(event.currentTarget.value)) }} />
-        </label>
+        <GlassRange
+          id={opacityId}
+          label={t('opacity')}
+          hint={t('opacityHint')}
+          formatValue={(value) => t('percent', { value: String(value) })}
+          value={settings.opacity}
+          min={BOTTOM_GLASS_LIMITS.opacity.min}
+          max={BOTTOM_GLASS_LIMITS.opacity.max}
+          disabled={disabled}
+          syncToken={mutation.sequence}
+          onChange={(value) => { void setOpacity(value) }}
+        />
+        <GlassRange
+          id={blurId}
+          label={t('blur')}
+          hint={t('blurHint')}
+          formatValue={(value) => t('pixels', { value: String(value) })}
+          value={settings.blur}
+          min={BOTTOM_GLASS_LIMITS.blur.min}
+          max={BOTTOM_GLASS_LIMITS.blur.max}
+          disabled={disabled}
+          syncToken={mutation.sequence}
+          onChange={(value) => { void setBlur(value) }}
+        />
+        <GlassRange
+          id={saturationId}
+          label={t('saturation')}
+          hint={t('saturationHint')}
+          formatValue={(value) => t('percent', { value: String(value) })}
+          value={settings.saturation}
+          min={BOTTOM_GLASS_LIMITS.saturation.min}
+          max={BOTTOM_GLASS_LIMITS.saturation.max}
+          disabled={disabled}
+          syncToken={mutation.sequence}
+          onChange={(value) => { void setSaturation(value) }}
+        />
       </div>
 
       <div className={css.footer}>

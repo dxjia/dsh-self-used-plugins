@@ -46,6 +46,40 @@ body,
  * @returns scoped CSS applied only while the plugin is active and enabled.
  */
 export function renderBottomGlassCss(settings: BottomGlassSettings): string {
+  const liquidGlass = settings.liquidGlass
+    ? `
+@media (prefers-reduced-transparency: no-preference) and (forced-colors: none) {
+  body[data-dsh-bottom-glass] [data-composer-card],
+  body[data-dsh-bottom-glass] [data-composer-card] button:not(
+    [data-slot='conversation.input.permission'] *,
+    [data-slot='conversation.input.model'] *
+  ),
+  body[data-dsh-bottom-glass] [data-composer-card] [role='button']:not(
+    [data-slot='conversation.input.permission'] *,
+    [data-slot='conversation.input.model'] *
+  ) {
+    background-image:
+      linear-gradient(
+        132deg,
+        rgb(255 255 255 / 0.34) 0,
+        rgb(255 255 255 / 0.1) 18%,
+        transparent 38%
+      ),
+      linear-gradient(
+        318deg,
+        rgb(255 255 255 / 0.1) 0,
+        transparent 30%
+      );
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.42),
+      inset 0 0 0 0.5px rgb(255 255 255 / 0.16),
+      0 10px 28px rgb(0 0 0 / 0.12);
+    -webkit-backdrop-filter: blur(${settings.blur}px) saturate(${settings.saturation}%) contrast(1.04) brightness(1.02);
+    backdrop-filter: blur(${settings.blur}px) saturate(${settings.saturation}%) contrast(1.04) brightness(1.02);
+  }
+}
+`
+    : ''
   return `
 body[data-dsh-bottom-glass] [data-shell-bottom] {
   background-color: color-mix(
@@ -129,24 +163,86 @@ body[data-dsh-bottom-glass] [data-sidebar-right-panel] [data-files-search-settin
 }
 
 body[data-dsh-bottom-glass] [data-conversation-content] [data-composer-seat] {
-  background:
-    linear-gradient(
-      180deg,
-      transparent 0,
-      color-mix(
-        in srgb,
-        var(--dsw-alias-bg-base) ${settings.opacity}%,
-        transparent
-      ) 36px
-    );
+  background: none;
 }
 
-body[data-dsh-bottom-glass] [data-composer-card],
-body[data-dsh-bottom-glass] [data-composer-dock] {
-  background-color: transparent;
+body[data-dsh-bottom-glass] [data-composer-card] {
+  background-color: color-mix(
+    in srgb,
+    var(--dsw-specific-input-major) ${settings.opacity}%,
+    transparent
+  );
   -webkit-backdrop-filter: blur(${settings.blur}px) saturate(${settings.saturation}%);
   backdrop-filter: blur(${settings.blur}px) saturate(${settings.saturation}%);
 }
+
+body[data-dsh-bottom-glass] [data-composer-dock] {
+  box-sizing: border-box;
+  width: calc(100% - 4 * var(--dsh-composer-dock-inset));
+  max-width: calc(
+    var(--dsh-composer-card-max-width) -
+    4 * var(--dsh-composer-dock-inset)
+  );
+  margin: var(--dsh-composer-stack-gap) auto 0;
+  padding: 3px 8px;
+  border-radius: var(--dsw-radius-md);
+  background-color: color-mix(
+    in srgb,
+    color-mix(
+      in srgb,
+      var(--dsw-alias-label-primary) 4%,
+      var(--dsw-alias-bg-base)
+    ) calc(${settings.opacity}% + 10%),
+    transparent
+  );
+  background-image: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--dsw-alias-label-primary) 4%, transparent),
+    transparent 48%
+  );
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--dsw-alias-label-primary) 7%, transparent),
+    inset 0 0 0 0.5px var(--dsw-alias-border-l2),
+    0 4px 12px color-mix(in srgb, var(--dsw-alias-bg-mask-1) 18%, transparent);
+  -webkit-backdrop-filter: blur(${settings.blur}px) saturate(${settings.saturation}%);
+  backdrop-filter: blur(${settings.blur}px) saturate(${settings.saturation}%);
+}
+
+body[data-dsh-bottom-glass] [data-goal-bar] > div::before {
+  background-color: color-mix(
+    in srgb,
+    color-mix(
+      in srgb,
+      var(--dsw-alias-label-primary) 4%,
+      var(--dsw-alias-bg-base)
+    ) calc(${settings.opacity}% + 10%),
+    transparent
+  );
+  background-image: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--dsw-alias-label-primary) 4%, transparent),
+    transparent 48%
+  );
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--dsw-alias-label-primary) 7%, transparent),
+    inset 0 0 0 0.5px var(--dsw-alias-border-l2),
+    0 4px 12px color-mix(in srgb, var(--dsw-alias-bg-mask-1) 18%, transparent);
+  -webkit-backdrop-filter: blur(${settings.blur}px) saturate(${settings.saturation}%);
+  backdrop-filter: blur(${settings.blur}px) saturate(${settings.saturation}%);
+}
+
+body[data-dsh-bottom-glass] [data-queue-dock] > div::before,
+body[data-dsh-bottom-glass] [data-testid='todo-panel'] {
+  background: color-mix(
+    in srgb,
+    var(--dsw-alias-bg-base) ${settings.opacity}%,
+    transparent
+  );
+  -webkit-backdrop-filter: blur(${settings.blur}px) saturate(${settings.saturation}%);
+  backdrop-filter: blur(${settings.blur}px) saturate(${settings.saturation}%);
+}
+
+${liquidGlass}
 
 body[data-dsh-bottom-glass] [data-shell-bottom] :where([data-inspector-panel]) {
   background-color: transparent;
@@ -161,7 +257,27 @@ body[data-dsh-bottom-glass] [data-shell-bottom] :where([data-inspector-panel]) {
   }
 
   body[data-dsh-bottom-glass] [data-conversation-content] [data-composer-seat] {
+    background: none;
+  }
+
+  body[data-dsh-bottom-glass] [data-composer-card] {
+    background-color: var(--dsw-specific-input-major);
+  }
+
+  body[data-dsh-bottom-glass] [data-composer-dock],
+  body[data-dsh-bottom-glass] [data-queue-dock] > div::before,
+  body[data-dsh-bottom-glass] [data-testid='todo-panel'] {
     background: var(--dsw-alias-bg-base);
+  }
+
+  body[data-dsh-bottom-glass] [data-goal-bar] > div::before {
+    background: var(--dsw-alias-bg-base);
+    box-shadow: none;
+  }
+
+  body[data-dsh-bottom-glass] [data-composer-dock] {
+    background-image: none;
+    box-shadow: none;
   }
 
   body[data-dsh-bottom-glass] [data-sidebar-right-panel] [data-sidebar-terminal],
@@ -176,7 +292,10 @@ body[data-dsh-bottom-glass] [data-shell-bottom] :where([data-inspector-panel]) {
   body[data-dsh-bottom-glass] div:has(> [data-conversation-content]),
   body[data-dsh-bottom-glass] div:has(> [data-slot="rightbar"]),
   body[data-dsh-bottom-glass] [data-composer-card],
-  body[data-dsh-bottom-glass] [data-composer-dock] {
+  body[data-dsh-bottom-glass] [data-composer-dock],
+  body[data-dsh-bottom-glass] [data-goal-bar] > div::before,
+  body[data-dsh-bottom-glass] [data-queue-dock] > div::before,
+  body[data-dsh-bottom-glass] [data-testid='todo-panel'] {
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
   }
@@ -188,7 +307,27 @@ body[data-dsh-bottom-glass] [data-shell-bottom] :where([data-inspector-panel]) {
   body[data-dsh-bottom-glass] div:has(> [data-conversation-content]),
   body[data-dsh-bottom-glass] div:has(> [data-slot="rightbar"]),
   body[data-dsh-bottom-glass] [data-conversation-content] [data-composer-seat] {
+    background: none;
+  }
+
+  body[data-dsh-bottom-glass] [data-composer-card] {
+    background-color: Canvas;
+  }
+
+  body[data-dsh-bottom-glass] [data-composer-dock],
+  body[data-dsh-bottom-glass] [data-queue-dock] > div::before,
+  body[data-dsh-bottom-glass] [data-testid='todo-panel'] {
     background: Canvas;
+  }
+
+  body[data-dsh-bottom-glass] [data-goal-bar] > div::before {
+    background: Canvas;
+    box-shadow: none;
+  }
+
+  body[data-dsh-bottom-glass] [data-composer-dock] {
+    background-image: none;
+    box-shadow: none;
   }
 
   body[data-dsh-bottom-glass] [data-sidebar-right-panel] [data-sidebar-terminal],
@@ -203,7 +342,10 @@ body[data-dsh-bottom-glass] [data-shell-bottom] :where([data-inspector-panel]) {
   body[data-dsh-bottom-glass] div:has(> [data-conversation-content]),
   body[data-dsh-bottom-glass] div:has(> [data-slot="rightbar"]),
   body[data-dsh-bottom-glass] [data-composer-card],
-  body[data-dsh-bottom-glass] [data-composer-dock] {
+  body[data-dsh-bottom-glass] [data-composer-dock],
+  body[data-dsh-bottom-glass] [data-goal-bar] > div::before,
+  body[data-dsh-bottom-glass] [data-queue-dock] > div::before,
+  body[data-dsh-bottom-glass] [data-testid='todo-panel'] {
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
   }

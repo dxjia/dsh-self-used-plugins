@@ -8,6 +8,8 @@ import { BOTTOM_GLASS_LIMITS, DEFAULT_BOTTOM_GLASS } from './settings.ts'
 export interface Config {
   /** Whether the full-width bottom slot receives the glass treatment. */
   enabled: Volatile<boolean>
+  /** Whether surfaces receive the Liquid Glass-inspired highlight treatment. */
+  liquidGlass: Volatile<boolean>
   /** Background paint opacity in percent. */
   opacity: Volatile<number>
   /** Backdrop blur radius in pixels. */
@@ -19,6 +21,7 @@ export interface Config {
 /** Live settings schema shared with Web and Desktop clients. */
 export const Config = z.object({
   enabled: z.boolean().default(DEFAULT_BOTTOM_GLASS.enabled).volatile(),
+  liquidGlass: z.boolean().default(DEFAULT_BOTTOM_GLASS.liquidGlass).volatile(),
   opacity: z.number().step(1)
     .min(BOTTOM_GLASS_LIMITS.opacity.min)
     .max(BOTTOM_GLASS_LIMITS.opacity.max)
