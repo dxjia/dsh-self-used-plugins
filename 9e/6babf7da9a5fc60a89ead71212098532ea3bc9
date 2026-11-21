@@ -1,0 +1,98 @@
+dsh-bottom-glass/src/settings.ts
+  s_c6961c7dd53ddb::t_2bc87cd67da740 1-7,11-67
+  s_c6961c7dd53ddb::t_718e1c7eca9d59 8-10
+dsh-bottom-glass/src/client/locales.ts
+  s_c6961c7dd53ddb::t_2bc87cd67da740 1-11,14-18,20-41,44-48,50-71,74-78,80-101,104-108,110-131,134-138,140-161,164-168,170-191,194-198,200-221,224-228,230-248
+  s_c6961c7dd53ddb::t_0d27d750b99c9f 12-13,19,42-43,49,72-73,79,102-103,109,132-133,139,162-163,169,192-193,199,222-223,229
+dsh-bottom-glass/src/client/BottomGlassRow.module.css
+  s_c6961c7dd53ddb::t_2bc87cd67da740 1-376
+dsh-bottom-glass/tests/settings.spec.ts
+  s_c6961c7dd53ddb::t_718e1c7eca9d59 12-14
+  s_c6961c7dd53ddb::t_2bc87cd67da740 1-11,15-36
+dsh-bottom-glass/tests/bottom-glass-row.spec.ts
+  s_c6961c7dd53ddb::t_f9693151c4841b 42
+  s_c6961c7dd53ddb::t_2bc87cd67da740 2,4,13-17,19-24,28-41,43-49,51-54
+  s_c6961c7dd53ddb::t_718e1c7eca9d59 18,27,50
+  s_c6961c7dd53ddb::t_6d81133071f01f 1,9
+  s_c6961c7dd53ddb::t_7fddedf49d885c 3,5-8,10-12
+  s_c6961c7dd53ddb::t_0d27d750b99c9f 25-26
+dsh-bottom-glass/README.md
+  s_c6961c7dd53ddb::t_f6cba7ed7c2dbb 13,58
+  s_c6961c7dd53ddb::t_7adf4519908a25 56
+  s_c6961c7dd53ddb::t_718e1c7eca9d59 10
+  s_c6961c7dd53ddb::t_282faf6747eed9 12
+  s_c6961c7dd53ddb::t_2bc87cd67da740 1-2,4-9,14-55,57
+  s_c6961c7dd53ddb::t_26a9912b4aa1c8 3,11
+dsh-bottom-glass/tsdown.config.ts
+  s_c6961c7dd53ddb::t_2bc87cd67da740 1-110
+dsh-bottom-glass/src/client/component-styles.ts
+  s_c6961c7dd53ddb::t_2bc87cd67da740 1-20
+dsh-bottom-glass/src/css-modules.d.ts
+  s_c6961c7dd53ddb::t_2bc87cd67da740 1-9
+README.md
+  s_c6961c7dd53ddb::t_0d27d750b99c9f 16
+  s_c6961c7dd53ddb::t_2bc87cd67da740 28,39,67
+dsh-bottom-glass/src/client/runtime.ts
+  s_c6961c7dd53ddb::t_0d27d750b99c9f 60-73,131-153,159,164-173,181-182,185,192-193,196,198-200,208-212,215
+  s_c6961c7dd53ddb::t_f6cba7ed7c2dbb 9-42,221-238,254-264,267,272,275,280-282
+  s_c6961c7dd53ddb::t_282faf6747eed9 106-130,174-180,201-207
+  s_c6961c7dd53ddb::t_2bc87cd67da740 1-8,43-59,154-158,163,186-191,197,216-220,239-253,265-266,268-271,273-274,276-279,283-289
+  s_c6961c7dd53ddb::t_7adf4519908a25 78,102-105,161,183,194,213
+  s_c6961c7dd53ddb::t_26a9912b4aa1c8 74-77,79-101,160,162,184,195,214
+dsh-bottom-glass/src/index.ts
+  s_c6961c7dd53ddb::t_2bc87cd67da740 1-47
+dsh-bottom-glass/src/client/preference.ts
+  s_c6961c7dd53ddb::t_2bc87cd67da740 1-98
+dsh-bottom-glass/tsconfig.json
+  s_c6961c7dd53ddb::t_2bc87cd67da740 1-22
+README.zh.md
+  s_c6961c7dd53ddb::t_0d27d750b99c9f 16
+  s_c6961c7dd53ddb::t_2bc87cd67da740 28,39,67
+dsh-bottom-glass/.gitignore
+  s_c6961c7dd53ddb::t_2bc87cd67da740 1-4
+dsh-bottom-glass/LICENSE
+  s_c6961c7dd53ddb::t_2bc87cd67da740 1-21
+dsh-bottom-glass/src/client/index.ts
+  s_c6961c7dd53ddb::t_2bc87cd67da740 1-51
+dsh-bottom-glass/tests/appearance.spec.ts
+  s_c6961c7dd53ddb::t_282faf6747eed9 27-29
+  s_c6961c7dd53ddb::t_27d6fcb1e62ff5 30
+  s_c6961c7dd53ddb::t_f6cba7ed7c2dbb 2,32-38
+  s_c6961c7dd53ddb::t_2bc87cd67da740 1,3-18,20,31,39-40
+  s_c6961c7dd53ddb::t_7adf4519908a25 23,26
+  s_c6961c7dd53ddb::t_0d27d750b99c9f 19,21-22
+  s_c6961c7dd53ddb::t_26a9912b4aa1c8 24-25
+dsh-bottom-glass/cordis.patch.yml
+  s_c6961c7dd53ddb::t_2bc87cd67da740 1-3
+dsh-bottom-glass/src/client/BottomGlassRow.tsx
+  s_c6961c7dd53ddb::t_2bc87cd67da740 1-187
+dsh-bottom-glass/vitest.config.ts
+  s_c6961c7dd53ddb::t_2bc87cd67da740 1-8
+dsh-bottom-glass/package.json
+  s_c6961c7dd53ddb::t_0d27d750b99c9f 4
+  s_c6961c7dd53ddb::t_f9693151c4841b 74
+  s_c6961c7dd53ddb::t_2bc87cd67da740 1-3,5-73,75-83
+dsh-bottom-glass/pnpm-lock.yaml
+  s_c6961c7dd53ddb::t_68d09f495cb6f8 1-1969
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "5.30.10",
+  "base_commit_sha": "9e6babf7da9a5fc60a89ead71212098532ea3bc9",
+  "prompts": {},
+  "sessions": {
+    "s_c6961c7dd53ddb": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1e425-627a-7e72-8612-bf8198ed46e7",
+        "model": "deepseek-v4.1-flash"
+      },
+      "human_author": "piggyguy <jiadexiang@huawei.com>",
+      "custom_attributes": {
+        "stats_models": {"deepseek-v4.1-flash":{"additions":1902,"deletions":63}},
+        "stats_total_additions": 1902,
+        "stats_total_deletions": 63
+      }
+    }
+  }
+}
