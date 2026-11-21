@@ -1,0 +1,3 @@
+- insert:
+    - id: git-branch
+      name: dsh-git-branch

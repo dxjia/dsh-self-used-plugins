@@ -14,6 +14,7 @@ This repository collects self-used DSH plugins without modifying the Harness sou
 | [`dsh-im-chat-mockup`](./dsh-im-chat-mockup) | Decorates Chat like an instant-messaging interface with bubbles, solid backgrounds, background images, role names, current-model names, and last-updated times. | `>=0.2.2-rc.5 <0.3.0` |
 | [`dsh-session-quick-switch`](./dsh-session-quick-switch) | Cycles through up to three Sessions viewed within the previous hour. Desktop defaults to `Ctrl+Tab`; the binding is editable in DSH shortcuts. | `>=0.2.2-rc.5 <0.3.0` |
 | [`dsh-bottom-glass`](./dsh-bottom-glass) | Adds adjustable frosted glass to the sidebar and bottom chat area with persisted background, blur, and saturation settings. | `>=0.2.2-rc.5 <0.3.0` |
+| [`dsh-git-branch`](./dsh-git-branch) | Shows the current Git branch beneath the composer, lists the repository's local branches, and switches only from a clean worktree. | `>=0.2.2-rc.5 <0.3.0` |
 
 DSH plugin APIs are still pre-stable. Review a plugin's README and rerun its tests after upgrading Harness.
 
@@ -26,6 +27,7 @@ dsh plugin --profile desktop add ./dsh-terminal-appearance
 dsh plugin --profile desktop add ./dsh-im-chat-mockup
 dsh plugin --profile desktop add ./dsh-session-quick-switch
 dsh plugin --profile desktop add ./dsh-bottom-glass
+dsh plugin --profile desktop add ./dsh-git-branch
 ```
 
 Use `--profile web` instead of `--profile desktop` for the Web profile.
@@ -37,6 +39,7 @@ dsh plugin --profile desktop remove dsh-terminal-appearance
 dsh plugin --profile desktop remove dsh-im-chat-mockup
 dsh plugin --profile desktop remove dsh-session-quick-switch
 dsh plugin --profile desktop remove dsh-bottom-glass
+dsh plugin --profile desktop remove dsh-git-branch
 ```
 
 ## Development
@@ -65,6 +68,7 @@ lib/
 ```text
 dsh-self-used-plugins/
 ├── dsh-bottom-glass/
+├── dsh-git-branch/
 ├── dsh-terminal-appearance/
 ├── dsh-im-chat-mockup/
 └── dsh-session-quick-switch/
