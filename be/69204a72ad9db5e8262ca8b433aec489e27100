@@ -1,0 +1,48 @@
+dsh-bottom-glass/README.md
+  s_e92b0e559778f8::t_4beeb145bda823 13
+dsh-bottom-glass/src/client/runtime.ts
+  s_e92b0e559778f8::t_4beeb145bda823 144-145,147-148,178-179,205-206
+  s_e92b0e559778f8::t_5b6744e877851e 131,163,190
+  s_e92b0e559778f8::t_9a733fe3e45fad 146,191
+dsh-bottom-glass/tests/appearance.spec.ts
+  s_e92b0e559778f8::t_458df3bf203555 23,49-53
+  s_c6961c7dd53ddb::t_0a217ba390ffae 22,37
+  s_e92b0e559778f8::t_4beeb145bda823 42,44-48
+  s_e92b0e559778f8::t_9a733fe3e45fad 36,41,43
+  s_e92b0e559778f8::t_5b6744e877851e 38-40
+  s_e92b0e559778f8::t_280e1f1c35077f 54-55
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "5.30.10",
+  "base_commit_sha": "be69204a72ad9db5e8262ca8b433aec489e27100",
+  "prompts": {},
+  "sessions": {
+    "s_c6961c7dd53ddb": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1e425-627a-7e72-8612-bf8198ed46e7",
+        "model": "deepseek-v4.1-flash"
+      },
+      "human_author": "piggyguy <jiadexiang@huawei.com>",
+      "custom_attributes": {
+        "stats_models": {"deepseek-v4.1-flash":{"additions":20,"deletions":4}},
+        "stats_total_additions": 20,
+        "stats_total_deletions": 4
+      }
+    },
+    "s_e92b0e559778f8": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1fe20-d90d-7413-8451-67bb5b0a57c8",
+        "model": "deepseek-v4.1-flash"
+      },
+      "human_author": "piggyguy <jiadexiang@huawei.com>",
+      "custom_attributes": {
+        "stats_models": {"deepseek-v4.1-flash":{"additions":58,"deletions":60}},
+        "stats_total_additions": 58,
+        "stats_total_deletions": 60
+      }
+    }
+  }
+}
