@@ -83,6 +83,20 @@ describe('bottom-glass stylesheet', () => {
     expect(reducedTransparency).toContain('backdrop-filter: none')
   })
 
+  it('keeps the add-command menu readable over the translucent composer', () => {
+    const css = renderBottomGlassCss({
+      enabled: true, liquidGlass: false, opacity: 48, blur: 24, saturation: 140,
+    })
+    const menuRule = css.match(
+      /\[data-trigger-menu\] > \[aria-hidden='true'\] \{([\s\S]*?)\n\}/,
+    )?.[1]
+    expect(menuRule).toContain('background: transparent')
+    expect(menuRule).toContain('backdrop-filter: var(--dsw-menu-backdrop-filter)')
+
+    const menuSurface = css.match(/\[data-trigger-menu\] \{([\s\S]*?)\n\}/)?.[1]
+    expect(menuSurface).toContain('background: var(--dsw-specific-menu)')
+  })
+
   it('adds optional Liquid Glass-inspired highlights without changing reduced-transparency fallbacks', () => {
     const standard = renderBottomGlassCss({
       enabled: true, liquidGlass: false, opacity: 48, blur: 24, saturation: 140,
@@ -99,6 +113,7 @@ describe('bottom-glass stylesheet', () => {
     expect(liquidEnhancement).toContain("[data-composer-card] [role='button']:not(")
     expect(liquidEnhancement).toContain("[data-slot='conversation.input.permission'] *")
     expect(liquidEnhancement).toContain("[data-slot='conversation.input.model'] *")
+    expect(liquidEnhancement).toContain("[data-slot='conversation.input.overlay'] *")
     expect(liquidEnhancement).not.toContain('[data-goal-bar]')
     expect(liquidEnhancement).not.toContain('[data-queue-dock]')
     expect(liquidEnhancement).not.toContain('[data-composer-dock]')

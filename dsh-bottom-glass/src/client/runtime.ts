@@ -52,11 +52,13 @@ export function renderBottomGlassCss(settings: BottomGlassSettings): string {
   body[data-dsh-bottom-glass] [data-composer-card],
   body[data-dsh-bottom-glass] [data-composer-card] button:not(
     [data-slot='conversation.input.permission'] *,
-    [data-slot='conversation.input.model'] *
+    [data-slot='conversation.input.model'] *,
+    [data-slot='conversation.input.overlay'] *
   ),
   body[data-dsh-bottom-glass] [data-composer-card] [role='button']:not(
     [data-slot='conversation.input.permission'] *,
-    [data-slot='conversation.input.model'] *
+    [data-slot='conversation.input.model'] *,
+    [data-slot='conversation.input.overlay'] *
   ) {
     background-image:
       linear-gradient(
@@ -242,6 +244,16 @@ body[data-dsh-bottom-glass] [data-testid='todo-panel'] {
   backdrop-filter: blur(${settings.blur}px) saturate(${settings.saturation}%);
 }
 
+body[data-dsh-bottom-glass] [data-trigger-menu] {
+  background: var(--dsw-specific-menu);
+}
+
+body[data-dsh-bottom-glass] [data-trigger-menu] > [aria-hidden='true'] {
+  background: transparent;
+  -webkit-backdrop-filter: var(--dsw-menu-backdrop-filter);
+  backdrop-filter: var(--dsw-menu-backdrop-filter);
+}
+
 ${liquidGlass}
 
 body[data-dsh-bottom-glass] [data-shell-bottom] :where([data-inspector-panel]) {
@@ -278,6 +290,16 @@ body[data-dsh-bottom-glass] [data-shell-bottom] :where([data-inspector-panel]) {
   body[data-dsh-bottom-glass] [data-composer-dock] {
     background-image: none;
     box-shadow: none;
+  }
+
+  body[data-dsh-bottom-glass] [data-trigger-menu] > [aria-hidden='true'] {
+    background: transparent;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  body[data-dsh-bottom-glass] [data-trigger-menu] {
+    background: var(--dsw-alias-bg-base);
   }
 
   body[data-dsh-bottom-glass] [data-sidebar-right-panel] [data-sidebar-terminal],
@@ -328,6 +350,16 @@ body[data-dsh-bottom-glass] [data-shell-bottom] :where([data-inspector-panel]) {
   body[data-dsh-bottom-glass] [data-composer-dock] {
     background-image: none;
     box-shadow: none;
+  }
+
+  body[data-dsh-bottom-glass] [data-trigger-menu] > [aria-hidden='true'] {
+    background: transparent;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  body[data-dsh-bottom-glass] [data-trigger-menu] {
+    background: Canvas;
   }
 
   body[data-dsh-bottom-glass] [data-sidebar-right-panel] [data-sidebar-terminal],
