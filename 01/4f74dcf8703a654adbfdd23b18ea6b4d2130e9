@@ -1,0 +1,30 @@
+dsh-bottom-glass/tests/appearance.spec.ts
+  s_ed2d105f05db7c::t_b5457a07bc0530 49-50
+  s_ed2d105f05db7c::t_333b9f4ab59db4 55-59
+  s_ed2d105f05db7c::t_142cc71f100588 60-64
+dsh-bottom-glass/src/client/runtime.ts
+  s_ed2d105f05db7c::t_142cc71f100588 205-207,210-212
+  s_ed2d105f05db7c::t_b5457a07bc0530 172-175
+  s_ed2d105f05db7c::t_333b9f4ab59db4 187-193
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "5.30.10",
+  "base_commit_sha": "014f74dcf8703a654adbfdd23b18ea6b4d2130e9",
+  "prompts": {},
+  "sessions": {
+    "s_ed2d105f05db7c": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a203a4-f7f1-7492-999f-dedfee92a200",
+        "model": "gpt-6.2-sol"
+      },
+      "human_author": "piggyguy <jiadexiang@huawei.com>",
+      "custom_attributes": {
+        "stats_models": {"gpt-6.2-sol":{"additions":35,"deletions":25}},
+        "stats_total_additions": 35,
+        "stats_total_deletions": 25
+      }
+    }
+  }
+}
