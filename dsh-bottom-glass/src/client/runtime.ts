@@ -169,6 +169,10 @@ body[data-dsh-bottom-glass] [data-conversation-content] [data-composer-seat] {
 }
 
 body[data-dsh-bottom-glass] [data-composer-card] {
+  /* Keep the input capsule's lower corners visible while the information
+     strip remains tucked directly underneath it. */
+  border-bottom-left-radius: var(--dsw-radius-panel);
+  border-bottom-right-radius: var(--dsw-radius-panel);
   background-color: color-mix(
     in srgb,
     var(--dsw-specific-input-major) ${settings.opacity}%,
@@ -180,14 +184,13 @@ body[data-dsh-bottom-glass] [data-composer-card] {
 
 body[data-dsh-bottom-glass] [data-composer-dock] {
   box-sizing: border-box;
-  width: calc(100% - 4 * var(--dsh-composer-dock-inset));
-  max-width: calc(
-    var(--dsh-composer-card-max-width) -
-    4 * var(--dsh-composer-dock-inset)
-  );
-  margin: var(--dsh-composer-stack-gap) auto 0;
-  padding: 3px 8px;
-  border-radius: var(--dsw-radius-md);
+  width: 100%;
+  max-width: var(--dsh-composer-card-max-width);
+  /* Pull the information strip against the input card and let the two
+     surfaces read as one continuous composer shell. */
+  margin: -1px auto 0;
+  padding: 3px 14px 5px;
+  border-radius: 0 0 var(--dsw-radius-panel) var(--dsw-radius-panel);
   background-color: color-mix(
     in srgb,
     color-mix(
@@ -199,12 +202,14 @@ body[data-dsh-bottom-glass] [data-composer-dock] {
   );
   background-image: linear-gradient(
     180deg,
-    color-mix(in srgb, var(--dsw-alias-label-primary) 4%, transparent),
-    transparent 48%
+    transparent,
+    color-mix(in srgb, var(--dsw-alias-label-primary) 4%, transparent) 48%,
+    transparent
   );
   box-shadow:
-    inset 0 1px 0 color-mix(in srgb, var(--dsw-alias-label-primary) 7%, transparent),
-    inset 0 0 0 0.5px var(--dsw-alias-border-l2),
+    inset 0 -0.5px 0 var(--dsw-alias-border-l2),
+    inset 0.5px 0 0 var(--dsw-alias-border-l2),
+    inset -0.5px 0 0 var(--dsw-alias-border-l2),
     0 4px 12px color-mix(in srgb, var(--dsw-alias-bg-mask-1) 18%, transparent);
   -webkit-backdrop-filter: blur(${settings.blur}px) saturate(${settings.saturation}%);
   backdrop-filter: blur(${settings.blur}px) saturate(${settings.saturation}%);
