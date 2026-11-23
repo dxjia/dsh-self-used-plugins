@@ -15,6 +15,7 @@
 | [`dsh-session-quick-switch`](./dsh-session-quick-switch) | 在最近一小时内访问过的至多三个会话之间循环切换。Desktop 默认使用 `Ctrl+Tab`，可在 DSH 快捷键设置中修改。 | `>=0.2.2-rc.5 <0.3.0` |
 | [`dsh-bottom-glass`](./dsh-bottom-glass) | 为侧边栏和聊天底部增加可调的毛玻璃效果，支持持久化背景浓度、模糊和饱和度设置。 | `>=0.2.2-rc.5 <0.3.0` |
 | [`dsh-git-branch`](./dsh-git-branch) | 当前会话工作目录位于 Git 仓库时，在底部统计栏显示当前分支，支持列出本地分支并在工作区干净时切换。 | `>=0.2.2-rc.5 <0.3.0` |
+| [`dsh-floating-note`](./dsh-floating-note) | 增加一个持久化悬浮便签，并在一级设置页中调节文字大小、字体、颜色和透明度。 | `>=0.2.2-rc.5 <0.3.0` |
 
 DSH 插件 API 仍处于预稳定阶段。升级 Harness 后，请查看各插件 README，并重新运行对应测试。
 
@@ -28,6 +29,7 @@ dsh plugin --profile desktop add ./dsh-im-chat-mockup
 dsh plugin --profile desktop add ./dsh-session-quick-switch
 dsh plugin --profile desktop add ./dsh-bottom-glass
 dsh plugin --profile desktop add ./dsh-git-branch
+dsh plugin --profile desktop add ./dsh-floating-note
 ```
 
 Web profile 将 `desktop` 替换为 `web` 即可。
@@ -40,6 +42,7 @@ dsh plugin --profile desktop remove dsh-im-chat-mockup
 dsh plugin --profile desktop remove dsh-session-quick-switch
 dsh plugin --profile desktop remove dsh-bottom-glass
 dsh plugin --profile desktop remove dsh-git-branch
+dsh plugin --profile desktop remove dsh-floating-note
 ```
 
 ## 开发
@@ -68,6 +71,7 @@ lib/
 ```text
 dsh-self-used-plugins/
 ├── dsh-bottom-glass/
+├── dsh-floating-note/
 ├── dsh-git-branch/
 ├── dsh-terminal-appearance/
 ├── dsh-im-chat-mockup/
