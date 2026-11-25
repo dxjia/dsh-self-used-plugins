@@ -24,7 +24,7 @@ const CSS = `
   justify-content: space-between;
   gap: 8px;
   min-height: 36px;
-  padding: 4px 8px 4px 12px;
+  padding: 4px 8px 4px 16px;
   border-bottom: 0.5px solid var(--dsw-alias-border-l2);
   color: var(--dsw-alias-label-secondary);
   cursor: grab;
@@ -54,10 +54,12 @@ const CSS = `
   .dsh-floating-note__hide:hover { background: var(--dsw-alias-interactive-bg-hover); }
 }
 .dsh-floating-note__editor {
+  box-sizing: border-box;
   flex: 1;
   width: 100%;
+  min-width: 0;
   min-height: 0;
-  padding: 12px;
+  padding: 12px 16px 16px;
   border: 0;
   outline: 0;
   background: transparent;
