@@ -43,6 +43,7 @@ export function apply(ctx: Context): void {
     setStyle: style => preference.setStyle(style),
     setAccent: accent => preference.setAccent(accent),
     setShowNames: show => preference.setShowNames(show),
+    setCollapseLong: collapse => preference.setCollapseLong(collapse),
     setSenderName: name => preference.setSenderName(name),
     setBackgroundPreset: preset => preference.setBackgroundPreset(preset),
     setCustomBackground: id => preference.setCustomBackground(id),

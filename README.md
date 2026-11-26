@@ -11,7 +11,7 @@ This repository collects self-used DSH plugins without modifying the Harness sou
 | Plugin | What it does | DSH compatibility |
 |---|---|---|
 | [`dsh-terminal-appearance`](./dsh-terminal-appearance) | Adds terminal palettes, ANSI colors, font-family controls, and font-size controls to the sidebar terminal. | `>=0.2.2-rc.3 <0.3.0` |
-| [`dsh-im-chat-mockup`](./dsh-im-chat-mockup) | Decorates Chat like an instant-messaging interface with bubbles, solid backgrounds, background images, role names, current-model names, and last-updated times. | `>=0.2.2-rc.5 <0.3.0` |
+| [`dsh-im-chat-mockup`](./dsh-im-chat-mockup) | Decorates Chat like an instant-messaging interface with bubbles, solid backgrounds, background images, role names, current-model names, last-updated times, and folded long messages. | `>=0.2.2-rc.5 <0.3.0` |
 | [`dsh-session-quick-switch`](./dsh-session-quick-switch) | Cycles through up to three Sessions viewed within the previous hour. Desktop defaults to `Ctrl+Tab`; the binding is editable in DSH shortcuts. | `>=0.2.2-rc.5 <0.3.0` |
 | [`dsh-bottom-glass`](./dsh-bottom-glass) | Adds adjustable frosted glass to the sidebar and bottom chat area with persisted background, blur, and saturation settings. | `>=0.2.2-rc.5 <0.3.0` |
 | [`dsh-git-branch`](./dsh-git-branch) | Shows the current Git branch beneath the composer, lists the repository's local branches, and switches only from a clean worktree. | `>=0.2.2-rc.5 <0.3.0` |

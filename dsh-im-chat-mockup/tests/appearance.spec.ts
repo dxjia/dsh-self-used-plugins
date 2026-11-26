@@ -2,6 +2,7 @@ import { transform } from 'lightningcss'
 import { describe, expect, it } from 'vitest'
 import type { ModelDirectoryState } from '@deepseek-ai/dsh-client-ui-model-selection/client'
 import { renderChatAppearanceCss, readableForeground } from '../src/client/css.ts'
+import { FOLD_LINES, exceedsFoldHeight, foldHeight } from '../src/client/fold.ts'
 import {
   formatLastUpdated,
   messageMeta,
@@ -28,7 +29,33 @@ describe('chat appearance settings', () => {
       senderName: 'Ada',
       backgroundPreset: 'custom',
       customImageId: 'bg-test',
+      collapseLong: true,
     })
+  })
+
+  it('keeps an explicit fold choice and defaults it on', () => {
+    expect(normalizeChatAppearanceSettings({ collapseLong: false }).collapseLong).toBe(false)
+    expect(normalizeChatAppearanceSettings({}).collapseLong).toBe(true)
+    expect(DEFAULT_CHAT_APPEARANCE.collapseLong).toBe(true)
+  })
+})
+
+describe('long-message folding', () => {
+  it('derives the visible height from the line budget, line height, and padding', () => {
+    expect(foldHeight(22, 10, 10)).toBe(22 * FOLD_LINES + 20)
+    expect(foldHeight(0, 10, 10)).toBeUndefined()
+    expect(foldHeight(Number.NaN, 10, 10)).toBeUndefined()
+    expect(foldHeight(22, Number.POSITIVE_INFINITY, 10)).toBeUndefined()
+  })
+
+  it('folds only when the content grows past the budget', () => {
+    const limit = foldHeight(22, 10, 10) as number
+    expect(exceedsFoldHeight(limit - 44, 22, 10, 10)).toBe(false)
+    expect(exceedsFoldHeight(limit, 22, 10, 10)).toBe(false)
+    expect(exceedsFoldHeight(limit + 0.6, 22, 10, 10)).toBe(false)
+    expect(exceedsFoldHeight(limit + 22, 22, 10, 10)).toBe(true)
+    expect(exceedsFoldHeight(limit + 22, Number.NaN, 10, 10)).toBe(false)
+    expect(exceedsFoldHeight(Number.NaN, 22, 10, 10)).toBe(false)
   })
 })
 
@@ -80,6 +107,10 @@ describe('chat appearance CSS', () => {
     expect(css).toContain('data-dsh-im-assistant-surface')
     expect(css).toContain('position: absolute')
     expect(css).toContain('padding-top: 21px')
+    expect(css).toContain(`calc(${FOLD_LINES} * 1lh`)
+    expect(css).toContain('data-dsh-im-fold-state="collapsed"')
+    expect(css).toContain('data-dsh-im-fold-toggle')
+    expect(css).toContain('align-self: flex-start')
     expect(() => transform({ filename: `${style}-${colorScheme}.css`, code: Buffer.from(css) })).not.toThrow()
   })
 

@@ -34,6 +34,7 @@ export interface ChatAppearanceRowInjected {
   setStyle(style: MessageStyle): Promise<boolean>
   setAccent(accent: string): Promise<boolean>
   setShowNames(show: boolean): Promise<boolean>
+  setCollapseLong(collapse: boolean): Promise<boolean>
   setSenderName(name: string): Promise<boolean>
   setBackgroundPreset(preset: BackgroundPreset): Promise<boolean>
   setCustomBackground(id: string): Promise<boolean>
@@ -61,7 +62,7 @@ const PREVIEW_BACKGROUNDS: Record<Exclude<BackgroundPreset, 'custom'>, string> =
  * @returns the collapsible General settings row.
  */
 export function ChatAppearanceRow({
-  useAppearance, useMutation, setStyle, setAccent, setShowNames, setSenderName,
+  useAppearance, useMutation, setStyle, setAccent, setShowNames, setCollapseLong, setSenderName,
   setBackgroundPreset, setCustomBackground, reset, t,
 }: Props) {
   const appearance = useAppearance(value => value)
@@ -209,6 +210,18 @@ export function ChatAppearanceRow({
         <button type="button" className={css.switch} role="switch" disabled={disabled}
           aria-checked={settings.showNames} aria-label={t('showNames')}
           onClick={() => { void setShowNames(!settings.showNames) }}>
+          <span />
+        </button>
+      </div>
+
+      <div className={css.toggleRow}>
+        <span>
+          <span className={css.label}>{t('foldLongMessages')}</span>
+          <span className={css.toggleHint}>{t('foldLongMessagesHint')}</span>
+        </span>
+        <button type="button" className={css.switch} role="switch" disabled={disabled}
+          aria-checked={settings.collapseLong} aria-label={t('foldLongMessages')}
+          onClick={() => { void setCollapseLong(!settings.collapseLong) }}>
           <span />
         </button>
       </div>

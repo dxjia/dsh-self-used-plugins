@@ -1,5 +1,6 @@
 /** Scoped CSS generation for the IM-style Chat decoration. */
 import type { BackgroundPreset, ChatAppearanceSettings } from '../settings.ts'
+import { FOLD_LINES } from './fold.ts'
 
 type ColorScheme = 'light' | 'dark'
 
@@ -151,8 +152,10 @@ export function renderChatAppearanceCss(
   justify-content: flex-start;
 }
 [data-dsh-im-enabled] [data-message-bubble] {
+  --dsh-im-bubble-pad-y: 10px;
   position: relative;
   box-sizing: border-box;
+  padding-block: var(--dsh-im-bubble-pad-y);
 }
 [data-dsh-im-enabled] [data-dsh-im-assistant-surface] {
   box-sizing: border-box;
@@ -166,6 +169,52 @@ export function renderChatAppearanceCss(
   box-shadow: 0 6px 20px rgba(13, 19, 29, ${colorScheme === 'dark' ? '0.18' : '0.07'});
 }
 ${modeRules}
+/* Folding keeps the surface's padding plus its first ${FOLD_LINES} content lines. */
+[data-dsh-im-enabled] [data-dsh-im-fold-state="collapsed"] [data-message-bubble] {
+  max-height: calc(${FOLD_LINES} * 1.5em + var(--dsh-im-bubble-pad-y) * 2);
+  max-height: calc(${FOLD_LINES} * 1lh + var(--dsh-im-bubble-pad-y) * 2 + 2px);
+  overflow: hidden;
+}
+/* Plugin-owned control below the bubble, outside DSH's text-interaction surface.
+   The row right-aligns its bubble, so the control overrides that alignment to
+   sit against the bubble's left edge instead. */
+[data-dsh-im-fold-toggle] {
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  gap: 5px;
+  margin: 0;
+  padding: 2px 9px;
+  border: 0;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--dsw-alias-label-primary) 7%, transparent);
+  color: var(--dsw-alias-label-secondary);
+  font: inherit;
+  font-size: 12px;
+  line-height: 18px;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+}
+[data-dsh-im-fold-toggle]:hover {
+  background: color-mix(in srgb, var(--dsw-alias-label-primary) 12%, transparent);
+  color: var(--dsw-alias-label-primary);
+}
+[data-dsh-im-fold-toggle]:focus-visible {
+  outline: var(--dsw-focus-ring-width, 2px) solid var(--dsw-focus-ring-color, var(--dsw-alias-state-business-primary));
+  outline-offset: 2px;
+}
+[data-dsh-im-fold-toggle]::after {
+  width: 5px;
+  height: 5px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: translateY(-2px) rotate(45deg);
+  content: "";
+}
+[data-dsh-im-fold-state="expanded"] [data-dsh-im-fold-toggle]::after {
+  transform: translateY(1px) rotate(225deg);
+}
 @media (prefers-reduced-motion: no-preference) {
   [data-dsh-im-enabled] [data-dsh-im-assistant-surface] {
     transition: background-color 160ms ease, border-color 160ms ease;

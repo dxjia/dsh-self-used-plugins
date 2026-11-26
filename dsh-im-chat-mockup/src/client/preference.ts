@@ -58,6 +58,15 @@ export class ChatAppearancePreference {
   }
 
   /**
+   * Save whether long user messages fold behind an expand control.
+   * @param collapse - whether overlong messages start folded.
+   * @returns whether the Host accepted the write.
+   */
+  setCollapseLong(collapse: boolean): Promise<boolean> {
+    return this.write(() => this.form.set('collapseLong', collapse))
+  }
+
+  /**
    * Save a bundled background preset.
    * @param preset - preset identifier.
    * @returns whether the Host accepted the write.
@@ -91,6 +100,7 @@ export class ChatAppearancePreference {
       { op: 'unset', path: ['senderName'] },
       { op: 'unset', path: ['backgroundPreset'] },
       { op: 'unset', path: ['customImageId'] },
+      { op: 'unset', path: ['collapseLong'] },
     ]))
   }
 

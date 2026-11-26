@@ -12,8 +12,19 @@ It preserves the native Chat renderer: Markdown, code blocks, diffs, tool cards,
 - The sender name is configurable.
 - The answerer name follows the current session model and updates when the model changes.
 - Every user or answer message shows its last-updated time as `Month/Day Hour:Minute`.
+- A user message longer than the visible line budget folds to its first 10 lines, with a `Show more` / `Show less` control directly below the bubble. The control re-folds the message and the choice is remembered per message.
 - Light and dark application themes use DSH semantic color tokens.
 - Message metadata reserves layout before streaming content arrives, so incremental LLM text does not change row height or move DSH's scroll anchor.
+
+## Folded long messages
+
+Settings → General → Chat appearance → **Fold long messages** controls this behavior; it is on by default.
+
+- Only durable outbound messages (`data-chat-flow-kind="user"` and `"steering"`) are measured. Pending submissions and local echoes keep their native height, so a message does not jump while it is admitted.
+- A bubble folds only when its rendered height exceeds its padding plus ten content lines. The budget uses the surface's own `line-height`, so the DSH font-size setting and light/dark themes continue to work.
+- The expand control sits directly below the bubble and outside DSH's text-interaction surface, so selecting or copying the message is unaffected. It reads `Show more` while folded and `Show less` while open, and the open state is remembered per message across row rebuilds.
+- A column-width change or a late web-font load invalidates the earlier measurement and re-evaluates the row instead of keeping a stale control.
+- Turning the setting off removes every control and restores the native message height.
 
 ## Build
 

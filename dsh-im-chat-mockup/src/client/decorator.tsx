@@ -9,6 +9,16 @@ import {
   normalizeChatAppearanceSettings,
   type ChatAppearanceSettings,
 } from '../settings.ts'
+import {
+  FOLD_READY_ATTRIBUTE,
+  FOLD_STATE_ATTRIBUTE,
+  FOLD_TOGGLE_ATTRIBUTE,
+  OUTBOUND_ROW_SELECTOR,
+  foldRows,
+  forgetFold,
+  syncFoldToggles,
+  toggleFold,
+} from './fold-dom.ts'
 import type {} from './locales.ts'
 import { formatLastUpdated, messageMeta, resolveModelDisplayName } from './time.ts'
 
@@ -59,6 +69,11 @@ function clearDecorations(): void {
     element.removeAttribute('data-dsh-im-meta')
     element.removeAttribute('data-dsh-im-assistant-surface')
   }
+  for (const element of document.querySelectorAll<HTMLElement>(`[${FOLD_READY_ATTRIBUTE}], [${FOLD_STATE_ATTRIBUTE}]`)) {
+    element.removeAttribute(FOLD_READY_ATTRIBUTE)
+    element.removeAttribute(FOLD_STATE_ATTRIBUTE)
+  }
+  for (const button of document.querySelectorAll<HTMLElement>(`[${FOLD_TOGGLE_ATTRIBUTE}]`)) button.remove()
 }
 
 function setAttributeIfChanged(element: HTMLElement, name: string, value: string): void {
@@ -98,10 +113,12 @@ export function ChatAppearanceDecorator({
   const model = useModelDirectory(value => value)
   const settings = normalizeChatAppearanceSettings(appearance.value)
   const assistantName = resolveModelDisplayName(model, t('assistantFallback'))
+  const foldMore = t('foldMore')
+  const foldLess = t('foldLess')
   const [now, setNow] = useState(() => Date.now())
   const decorateRef = useRef<() => void>(() => {})
-  const latest = useRef({ assistantName, nodes, now, settings })
-  latest.current = { assistantName, nodes, now, settings }
+  const latest = useRef({ assistantName, nodes, now, settings, foldMore, foldLess })
+  latest.current = { assistantName, nodes, now, settings, foldMore, foldLess }
 
   useEffect(() => {
     if (!hasRunning) return
@@ -112,6 +129,8 @@ export function ChatAppearanceDecorator({
 
   useLayoutEffect(() => {
     let frame: number | undefined
+    let resizeFrame: number | undefined
+    const expandedKeys = new Set<string>()
     const decorate = (): void => {
       frame = undefined
       const root = visibleChatRoot()
@@ -148,6 +167,9 @@ export function ChatAppearanceDecorator({
       for (const row of root.querySelectorAll<HTMLElement>('[data-submission-echo], [data-pending-steering]')) {
         setAttributeIfChanged(row, 'data-dsh-im-meta', pendingMeta)
       }
+
+      foldRows(root, current.settings, expandedKeys)
+      syncFoldToggles(root, { more: current.foldMore, less: current.foldLess })
     }
     decorateRef.current = decorate
     const schedule = (): void => {
@@ -172,10 +194,49 @@ export function ChatAppearanceDecorator({
       attributes: true,
       attributeFilter: ['data-chat-flow-kind', 'data-chat-node-key', 'data-chat-group-part'],
     })
+    // Line wrapping depends on the column width and the loaded font, so both
+    // invalidate earlier measurements instead of keeping a stale control.
+    const remeasure = (): void => {
+      const root = visibleChatRoot()
+      if (root === undefined) return
+      for (const row of root.querySelectorAll<HTMLElement>(OUTBOUND_ROW_SELECTOR)) {
+        forgetFold(row)
+      }
+      schedule()
+    }
+    const onResize = (): void => {
+      if (resizeFrame !== undefined) window.cancelAnimationFrame(resizeFrame)
+      resizeFrame = window.requestAnimationFrame(() => {
+        resizeFrame = undefined
+        remeasure()
+      })
+    }
+    // The plugin owns the button, so one delegated listener outlives row rebuilds.
+    const onClick = (event: MouseEvent): void => {
+      const target = event.target
+      if (!(target instanceof Element)) return
+      const button = target.closest<HTMLElement>(`[${FOLD_TOGGLE_ATTRIBUTE}]`)
+      if (button === null) return
+      const row = button.closest<HTMLElement>(OUTBOUND_ROW_SELECTOR)
+      if (row === null) return
+      event.preventDefault()
+      event.stopPropagation()
+      toggleFold(row, expandedKeys)
+      const chatRoot = button.closest<HTMLElement>('[data-chat-flow]')
+      if (chatRoot !== null) {
+        syncFoldToggles(chatRoot, { more: latest.current.foldMore, less: latest.current.foldLess })
+      }
+    }
+    document.addEventListener('click', onClick)
+    window.addEventListener('resize', onResize)
+    if (typeof document.fonts !== 'undefined') void document.fonts.ready.then(remeasure, () => {})
     decorate()
     return () => {
       observer.disconnect()
+      document.removeEventListener('click', onClick)
+      window.removeEventListener('resize', onResize)
       if (frame !== undefined) window.cancelAnimationFrame(frame)
+      if (resizeFrame !== undefined) window.cancelAnimationFrame(resizeFrame)
       decorateRef.current = () => {}
       clearDecorations()
     }
@@ -183,7 +244,7 @@ export function ChatAppearanceDecorator({
 
   useLayoutEffect(() => {
     decorateRef.current()
-  }, [assistantName, now, settings.showNames, settings.senderName, signature])
+  }, [assistantName, now, settings.showNames, settings.senderName, settings.collapseLong, foldMore, foldLess, signature])
 
   return null
 }

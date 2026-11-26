@@ -19,6 +19,7 @@ export interface Config {
   senderName: Volatile<string>
   backgroundPreset: Volatile<BackgroundPreset>
   customImageId: Volatile<string>
+  collapseLong: Volatile<boolean>
 }
 
 /** Live settings schema shared with Web and Desktop clients. */
@@ -29,6 +30,7 @@ export const Config = z.object({
   senderName: z.string().default(DEFAULT_CHAT_APPEARANCE.senderName).volatile(),
   backgroundPreset: z.union([...BACKGROUND_PRESETS]).default(DEFAULT_CHAT_APPEARANCE.backgroundPreset).volatile(),
   customImageId: z.string().default('').volatile(),
+  collapseLong: z.boolean().default(DEFAULT_CHAT_APPEARANCE.collapseLong).volatile(),
 })
 
 /**

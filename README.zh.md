@@ -11,7 +11,7 @@
 | 插件 | 功能 | DSH 兼容范围 |
 |---|---|---|
 | [`dsh-terminal-appearance`](./dsh-terminal-appearance) | 为侧边栏终端增加配色方案、ANSI 颜色、字体和字号设置。 | `>=0.2.2-rc.3 <0.3.0` |
-| [`dsh-im-chat-mockup`](./dsh-im-chat-mockup) | 把聊天界面装饰成即时通讯样式，支持气泡、纯色背景、背景图、角色名称、当前模型名称和最后更新时间。 | `>=0.2.2-rc.5 <0.3.0` |
+| [`dsh-im-chat-mockup`](./dsh-im-chat-mockup) | 把聊天界面装饰成即时通讯样式，支持气泡、纯色背景、背景图、角色名称、当前模型名称、最后更新时间和长消息折叠。 | `>=0.2.2-rc.5 <0.3.0` |
 | [`dsh-session-quick-switch`](./dsh-session-quick-switch) | 在最近一小时内访问过的至多三个会话之间循环切换。Desktop 默认使用 `Ctrl+Tab`，可在 DSH 快捷键设置中修改。 | `>=0.2.2-rc.5 <0.3.0` |
 | [`dsh-bottom-glass`](./dsh-bottom-glass) | 为侧边栏和聊天底部增加可调的毛玻璃效果，支持持久化背景浓度、模糊和饱和度设置。 | `>=0.2.2-rc.5 <0.3.0` |
 | [`dsh-git-branch`](./dsh-git-branch) | 当前会话工作目录位于 Git 仓库时，在底部统计栏显示当前分支，支持列出本地分支并在工作区干净时切换。 | `>=0.2.2-rc.5 <0.3.0` |

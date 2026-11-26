@@ -26,6 +26,7 @@ export interface ChatAppearanceSettings {
   senderName: string
   backgroundPreset: BackgroundPreset
   customImageId: string
+  collapseLong: boolean
 }
 
 /** Values used before the Host settings document is available. */
@@ -36,6 +37,7 @@ export const DEFAULT_CHAT_APPEARANCE: ChatAppearanceSettings = Object.freeze({
   senderName: 'Jia',
   backgroundPreset: 'dusk',
   customImageId: '',
+  collapseLong: true,
 })
 
 /**
@@ -73,5 +75,8 @@ export function normalizeChatAppearanceSettings(value: unknown): ChatAppearanceS
     customImageId: typeof candidate.customImageId === 'string'
       ? candidate.customImageId.slice(0, 128)
       : '',
+    collapseLong: typeof candidate.collapseLong === 'boolean'
+      ? candidate.collapseLong
+      : DEFAULT_CHAT_APPEARANCE.collapseLong,
   }
 }
