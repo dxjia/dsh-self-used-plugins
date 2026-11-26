@@ -1,0 +1,74 @@
+dsh-im-chat-mockup/src/client/preference.ts
+  s_35bcd15a0c66fd::t_508c9238ab53d0 103
+  s_35bcd15a0c66fd::t_651c6f85664f4e 61-68
+  s_35bcd15a0c66fd::t_1c2941d7ef7adf 60
+dsh-im-chat-mockup/src/client/index.ts
+  s_35bcd15a0c66fd::t_87f5178193b371 46
+dsh-im-chat-mockup/src/client/fold-dom.ts
+  s_35bcd15a0c66fd::t_0f569d795b3aa2 1-136
+dsh-im-chat-mockup/tests/fold-dom.spec.ts
+  s_35bcd15a0c66fd::t_17a92e40ef8700 1-167
+  s_35bcd15a0c66fd::t_5bbf43e18174e8 168-179
+dsh-im-chat-mockup/README.md
+  s_35bcd15a0c66fd::t_6d44921bce9754 15
+  s_35bcd15a0c66fd::t_a69f6577807de3 19-28
+dsh-im-chat-mockup/src/client/decorator.tsx
+  s_35bcd15a0c66fd::t_36bb2bb047f9de 225-228
+  s_35bcd15a0c66fd::t_e32ad2022c3c9b 12-21,203,224
+  s_35bcd15a0c66fd::t_4df6b56c3e9d5f 72-76,116-117,120-121,132-133,170-172,197-202,204-223,229-232,236-237,239,247
+dsh-im-chat-mockup/src/settings.ts
+  s_35bcd15a0c66fd::t_fe85d45b1b0671 29,40
+  s_35bcd15a0c66fd::t_b62f5dfe40f45e 78-80
+dsh-im-chat-mockup/src/index.ts
+  s_35bcd15a0c66fd::t_b47377ceb0ed2b 22,33
+dsh-im-chat-mockup/src/client/ChatAppearanceRow.tsx
+  s_35bcd15a0c66fd::t_1d8c4995ee38d7 65
+  s_35bcd15a0c66fd::t_c511255ff6d2b4 217-228
+  s_35bcd15a0c66fd::t_39675cd8d92b06 37
+dsh-im-chat-mockup/src/client/css.ts
+  h_6ce1d29c65dcdf 172
+  s_35bcd15a0c66fd::t_b1307ae9d5cd99 155,158
+  s_35bcd15a0c66fd::t_7f4e0b3e9fda1e 173-177,181-182,184-217
+  s_35bcd15a0c66fd::t_41a18ddd1a25c0 178-180,183
+  s_35bcd15a0c66fd::t_123bd9d3c0cb83 3
+dsh-im-chat-mockup/src/client/fold.ts
+  s_35bcd15a0c66fd::t_51c40c84d7e731 1-41
+README.md
+  s_35bcd15a0c66fd::t_57fe64a4a570f9 14
+README.zh.md
+  s_35bcd15a0c66fd::t_b9d9714c6e5b84 14
+dsh-im-chat-mockup/package.json
+  s_35bcd15a0c66fd::t_39b721c0d0c631 84
+dsh-im-chat-mockup/pnpm-lock.yaml
+  s_35bcd15a0c66fd::t_691899f765706d 68-70,88,997-999,1006-1011,1062-1065,1100-1103,1138-1141,1485-1487,1572-1575,2462-2465,2473-2478,2488,2494,2541-2544,2561-2562,2586-2598,2897-2899,2907,2911,2914,2931,2933-2935,2939-2940
+dsh-im-chat-mockup/src/client/locales.ts
+  s_35bcd15a0c66fd::t_a71c6e79aa0d9a 36-39,79-82,122-125,165-168,208-211,251-254,294-297,337-340
+dsh-im-chat-mockup/tests/appearance.spec.ts
+  s_35bcd15a0c66fd::t_42a23fded1a4c5 5,32,35-59,110-113
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "5.30.10",
+  "base_commit_sha": "cbe9ed50c8211d4297fdeabe15ed64644f0aad31",
+  "prompts": {},
+  "humans": {
+    "h_6ce1d29c65dcdf": {
+      "author": "piggyguy <jiadexiang@huawei.com>"
+    }
+  },
+  "sessions": {
+    "s_35bcd15a0c66fd": {
+      "agent_id": {
+        "tool": "deepseek-harness",
+        "id": "session-729b96bf-7c51-435e-844e-2924158b2381",
+        "model": "deepseek-flash"
+      },
+      "human_author": "piggyguy <jiadexiang@huawei.com>",
+      "custom_attributes": {
+        "stats_models": {"deepseek-flash":{"additions":627,"deletions":127}},
+        "stats_total_additions": 627,
+        "stats_total_deletions": 127
+      }
+    }
+  }
+}
