@@ -1,6 +1,6 @@
-import { Switch } from '@deepseek-ai/dsh-client-ui-primitives'
+import { Button, IconPlusOutlineRegular, Switch } from '@deepseek-ai/dsh-client-ui-primitives'
 import type { InjectFace, PropsLocale, PropsRuntime } from '@deepseek-ai/dsh-client-ui-slots'
-import type { NoteInjected } from './state.ts'
+import { MAX_NOTES, type NoteInjected } from './state.ts'
 
 type Props = PropsRuntime<'settings.section'> & PropsLocale<'floatingNote'> & InjectFace<NoteInjected>
 
@@ -15,6 +15,7 @@ const FONTS = [
 /** Render the first-level Notes settings page beside General. */
 export function NotesSection({ useNote, actions, t }: Props) {
   const state = useNote(value => value)
+  const atLimit = state.notes.length >= MAX_NOTES
   return (
     <div className="dsh-floating-note-settings">
       <div>
@@ -24,6 +25,19 @@ export function NotesSection({ useNote, actions, t }: Props) {
       <div className="dsh-floating-note-settings__row">
         <span className="dsh-floating-note-settings__label">{t('enabled')}</span>
         <Switch checked={state.enabled} label={t('enabled')} onChange={actions.setEnabled} />
+      </div>
+      <div className="dsh-floating-note-settings__row">
+        <span className="dsh-floating-note-settings__label">{t('noteCount')}</span>
+        <div className="dsh-floating-note-settings__control">
+          <span className="dsh-floating-note-settings__value">
+            {t('count', { value: String(state.notes.length), max: String(MAX_NOTES) })}
+          </span>
+          <Button variant="outline" size="sm" icon={<IconPlusOutlineRegular size={14} />}
+            disabled={atLimit} title={atLimit ? t('limit', { max: String(MAX_NOTES) }) : t('create')}
+            onClick={() => { actions.addNote() }}>
+            {t('create')}
+          </Button>
+        </div>
       </div>
       <div className="dsh-floating-note-settings__row">
         <label className="dsh-floating-note-settings__label" htmlFor="dsh-floating-note-font-size">{t('fontSize')}</label>

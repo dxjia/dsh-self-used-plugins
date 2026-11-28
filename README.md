@@ -15,7 +15,7 @@ This repository collects self-used DSH plugins without modifying the Harness sou
 | [`dsh-session-quick-switch`](./dsh-session-quick-switch) | Cycles through up to three Sessions viewed within the previous hour. Desktop defaults to `Ctrl+Tab`; the binding is editable in DSH shortcuts. | `>=0.2.2-rc.5 <0.3.0` |
 | [`dsh-bottom-glass`](./dsh-bottom-glass) | Adds adjustable frosted glass to the sidebar and bottom chat area with persisted background, blur, and saturation settings. | `>=0.2.2-rc.5 <0.3.0` |
 | [`dsh-git-branch`](./dsh-git-branch) | Shows the current Git branch beneath the composer, lists the repository's local branches, and switches only from a clean worktree. | `>=0.2.2-rc.5 <0.3.0` |
-| [`dsh-floating-note`](./dsh-floating-note) | Adds a persistent floating note with first-level settings for text size, font, color, and opacity. | `>=0.2.2-rc.5 <0.3.0` |
+| [`dsh-floating-note`](./dsh-floating-note) | Adds up to five persistent floating notes with independent text, plus first-level settings for text size, font, color, and opacity. | `>=0.2.2-rc.5 <0.3.0` |
 
 DSH plugin APIs are still pre-stable. Review a plugin's README and rerun its tests after upgrading Harness.
 

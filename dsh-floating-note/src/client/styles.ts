@@ -39,7 +39,12 @@ const CSS = `
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.dsh-floating-note__hide {
+.dsh-floating-note__actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.dsh-floating-note__action {
   display: inline-grid;
   width: 26px;
   height: 26px;
@@ -50,8 +55,12 @@ const CSS = `
   color: inherit;
   cursor: pointer;
 }
+.dsh-floating-note__action:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
 @media (hover: hover) {
-  .dsh-floating-note__hide:hover { background: var(--dsw-alias-interactive-bg-hover); }
+  .dsh-floating-note__action:hover:not(:disabled) { background: var(--dsw-alias-interactive-bg-hover); }
 }
 .dsh-floating-note__editor {
   box-sizing: border-box;
