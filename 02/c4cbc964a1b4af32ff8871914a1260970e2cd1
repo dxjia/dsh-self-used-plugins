@@ -1,0 +1,50 @@
+dsh-floating-note/src/client/NotesSection.tsx
+  s_e74ad5860af180::t_bcb2426a331f23 1,3,18,29-40
+  s_e74ad5860af180::t_f21de15f5de31c 41
+dsh-floating-note/src/client/styles.ts
+  s_e74ad5860af180::t_9f2eabc006bb3f 42-47,58-61,63
+dsh-floating-note/src/client/NoteOverlay.tsx
+  s_e74ad5860af180::t_3f58e58b1ba290 2,4,7,10-18,21-33,38,40-41,45-46,53,57,59,61-68,74-85,87,93-95,99-100
+  s_e74ad5860af180::t_18b6628d4205f4 96-98
+  s_e74ad5860af180::t_81239560d981c1 88-89
+dsh-floating-note/src/client/locales.ts
+  s_e74ad5860af180::t_166e3aae519b93 4,6-12,30-38
+README.md
+  s_e74ad5860af180::t_2011298e036afe 18
+README.zh.md
+  s_e74ad5860af180::t_9b68374ec30701 18
+dsh-floating-note/src/client/state.ts
+  s_e74ad5860af180::t_455384241486e7 3-17,24,27,30-35,48-61,75,83-158,162-163,172-183,187,189,191-193,195-228
+dsh-floating-note/tests/state.spec.ts
+  s_e74ad5860af180::t_50ef2edfddec50 2,21,26,30-56,58-95,118-124,127,129-132
+  s_e74ad5860af180::t_787b5ae636e421 1,4-13,16-17,96-117,135
+  s_e74ad5860af180::t_db1c544f88e9f6 3
+dsh-floating-note/README.md
+  s_e74ad5860af180::t_08bbfe4b96c1d6 3,8-11,13-15,18-20
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "5.30.10",
+  "base_commit_sha": "02c4cbc964a1b4af32ff8871914a1260970e2cd1",
+  "prompts": {},
+  "humans": {
+    "h_6ce1d29c65dcdf": {
+      "author": "piggyguy <jiadexiang@huawei.com>"
+    }
+  },
+  "sessions": {
+    "s_e74ad5860af180": {
+      "agent_id": {
+        "tool": "deepseek-harness",
+        "id": "session-8ccab8bd-87dc-4961-8518-1354d18099cd",
+        "model": "deepseek-flash"
+      },
+      "human_author": "piggyguy <jiadexiang@huawei.com>",
+      "custom_attributes": {
+        "stats_models": {"deepseek-v4.1-flash":{"additions":585,"deletions":88,"traces":["t_2011298e036afe","t_9b68374ec30701","t_08bbfe4b96c1d6","t_3f58e58b1ba290","t_81239560d981c1","t_18b6628d4205f4","t_bcb2426a331f23","t_166e3aae519b93","t_455384241486e7","t_9f2eabc006bb3f","t_787b5ae636e421","t_50ef2edfddec50","t_8f2fa6b002d3d1"]}},
+        "stats_total_additions": 585,
+        "stats_total_deletions": 88
+      }
+    }
+  }
+}
